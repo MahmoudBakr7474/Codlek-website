@@ -1,0 +1,358 @@
+{
+    "services": [
+        {
+            "key": "web",
+            "icon": "globe",
+            "tone": "blue",
+            "image": "web-development.webp",
+            "popular": true,
+            "title": {
+                "ar": "تطوير المواقع",
+                "en": "Web Development"
+            },
+            "summary": {
+                "ar": "مواقع احترافية بجميع التقنيات الحديثة: ووردبريس، React، Laravel وغيرها. مُحسّنة لمحركات البحث وسهلة الإدارة.",
+                "en": "Professional websites using all modern technologies: WordPress, React, Laravel & more. SEO-optimized and easy to manage."
+            },
+            "description": {
+                "ar": "نبني مواقع سريعة ومتجاوبة بتصميم يعكس هوية علامتكم، باستخدام ووردبريس أو Laravel أو React حسب طبيعة مشروعكم، مع لوحة تحكم سهلة وتهيئة كاملة لمحركات البحث.",
+                "en": "We build fast, responsive websites that reflect your brand, using WordPress, Laravel or React depending on your project, with an easy admin panel and full SEO setup."
+            },
+            "features": [
+                {
+                    "ar": "مواقع الشركات",
+                    "en": "Corporate websites"
+                },
+                {
+                    "ar": "منصات تعليمية",
+                    "en": "E-learning platforms"
+                },
+                {
+                    "ar": "لوحات تحكم مخصصة",
+                    "en": "Custom dashboards"
+                },
+                {
+                    "ar": "تحسين السرعة وSEO",
+                    "en": "Speed & SEO optimization"
+                }
+            ]
+        },
+        {
+            "key": "ecommerce",
+            "icon": "shopping-cart",
+            "tone": "magenta",
+            "image": "ecommerce.webp",
+            "popular": true,
+            "title": {
+                "ar": "متاجر إلكترونية",
+                "en": "E-Commerce Stores"
+            },
+            "summary": {
+                "ar": "متاجر ووكومرس وشوبيفاي بتصميم جذاب، مع ربط بوابات الدفع المحلية، والتكامل مع شركات الشحن في مصر والخليج.",
+                "en": "WooCommerce & Shopify stores with attractive design, local payment gateways, and shipping integration for Egypt & Gulf."
+            },
+            "description": {
+                "ar": "متاجر ووكومرس وشوبيفاي ومتاجر مخصصة، مع ربط بوابات الدفع المحلية وشركات الشحن في مصر والخليج، ولوحة لإدارة المنتجات والطلبات والمخزون.",
+                "en": "WooCommerce, Shopify and custom stores, integrated with local payment gateways and shipping companies across Egypt and the Gulf, with a dashboard for products, orders and inventory."
+            },
+            "features": [
+                {
+                    "ar": "ووكومرس وشوبيفاي",
+                    "en": "WooCommerce & Shopify"
+                },
+                {
+                    "ar": "بوابات دفع محلية",
+                    "en": "Local payment gateways"
+                },
+                {
+                    "ar": "ربط شركات الشحن",
+                    "en": "Shipping integrations"
+                },
+                {
+                    "ar": "إدارة المخزون والطلبات",
+                    "en": "Inventory & order management"
+                }
+            ]
+        },
+        {
+            "key": "systems",
+            "icon": "settings",
+            "tone": "teal",
+            "image": "business-systems.webp",
+            "popular": false,
+            "title": {
+                "ar": "أنظمة الشركات",
+                "en": "Business Systems"
+            },
+            "summary": {
+                "ar": "أنظمة CRM وERP مخصصة لإدارة العملاء والمخزون والموارد البشرية والمحاسبة. حلول تناسب طبيعة عملكم.",
+                "en": "Custom CRM & ERP systems for customer management, inventory, HR, and accounting. Solutions tailored to your business."
+            },
+            "description": {
+                "ar": "أنظمة CRM وERP مبنية على طريقة عملكم: إدارة العملاء والمبيعات والمخزون والموارد البشرية والحسابات، مع صلاحيات وتقارير واضحة.",
+                "en": "CRM and ERP systems built around the way you work: customers, sales, inventory, HR and accounting, with clear permissions and reports."
+            },
+            "features": [
+                {
+                    "ar": "أنظمة CRM",
+                    "en": "CRM systems"
+                },
+                {
+                    "ar": "أنظمة ERP",
+                    "en": "ERP systems"
+                },
+                {
+                    "ar": "الموارد البشرية والرواتب",
+                    "en": "HR & payroll"
+                },
+                {
+                    "ar": "تقارير ولوحات بيانات",
+                    "en": "Reports & dashboards"
+                }
+            ]
+        },
+        {
+            "key": "design",
+            "icon": "palette",
+            "tone": "magenta",
+            "image": "graphic-design.webp",
+            "popular": false,
+            "title": {
+                "ar": "تصميم جرافيك",
+                "en": "Graphic Design"
+            },
+            "summary": {
+                "ar": "تصميم بنرات وبوسترات دعائية وهويات بصرية احترافية. تصميمات بجودة عالية تعكس هوية علامتكم التجارية.",
+                "en": "Professional banners, promotional posters and visual identities. High-quality designs that reflect your brand."
+            },
+            "description": {
+                "ar": "هويات بصرية وتصميمات سوشيال ميديا وبنرات إعلانية بجودة عالية، تحافظ على اتساق علامتكم التجارية في كل مكان يظهر فيه اسمكم.",
+                "en": "Visual identities, social media designs and ad banners in high quality, keeping your brand consistent everywhere your name appears."
+            },
+            "features": [
+                {
+                    "ar": "الهوية البصرية",
+                    "en": "Brand identity"
+                },
+                {
+                    "ar": "تصميمات السوشيال ميديا",
+                    "en": "Social media designs"
+                },
+                {
+                    "ar": "بنرات وإعلانات",
+                    "en": "Banners & ads"
+                },
+                {
+                    "ar": "تصميم واجهات UI/UX",
+                    "en": "UI/UX design"
+                }
+            ]
+        },
+        {
+            "key": "marketing",
+            "icon": "trending-up",
+            "tone": "blue",
+            "image": "digital-marketing.webp",
+            "popular": false,
+            "title": {
+                "ar": "التسويق الرقمي",
+                "en": "Digital Marketing"
+            },
+            "summary": {
+                "ar": "حملات إعلانية على فيسبوك وإنستجرام وجوجل. إدارة منصات التواصل الاجتماعي وتحسين محركات البحث SEO.",
+                "en": "Ad campaigns on Facebook, Instagram & Google. Social media management and SEO optimization."
+            },
+            "description": {
+                "ar": "حملات إعلانية مدروسة على فيسبوك وإنستجرام وجوجل، وإدارة لحساباتكم على السوشيال ميديا، وتحسين ظهوركم في محركات البحث مع قياس واضح للنتائج.",
+                "en": "Well-planned ad campaigns on Facebook, Instagram and Google, social media management and better search visibility, with clear measurement of results."
+            },
+            "features": [
+                {
+                    "ar": "إعلانات ممولة",
+                    "en": "Paid advertising"
+                },
+                {
+                    "ar": "إدارة السوشيال ميديا",
+                    "en": "Social media management"
+                },
+                {
+                    "ar": "تحسين محركات البحث SEO",
+                    "en": "Search engine optimization"
+                },
+                {
+                    "ar": "تقارير أداء دورية",
+                    "en": "Regular performance reports"
+                }
+            ]
+        },
+        {
+            "key": "content",
+            "icon": "megaphone",
+            "tone": "teal",
+            "image": "content-management.webp",
+            "popular": false,
+            "title": {
+                "ar": "إدارة المحتوى",
+                "en": "Content Management"
+            },
+            "summary": {
+                "ar": "كتابة محتوى تسويقي احترافي بالعربية والإنجليزية. محتوى يخاطب جمهوركم ويبني الثقة مع عملائكم.",
+                "en": "Professional marketing content in Arabic & English. Content that speaks to your audience and builds trust."
+            },
+            "description": {
+                "ar": "محتوى تسويقي احترافي بالعربية والإنجليزية: نصوص المواقع، ووصف المنتجات، ومقالات المدونة، ومنشورات السوشيال ميديا بلغة تخاطب جمهوركم.",
+                "en": "Professional marketing content in Arabic and English: website copy, product descriptions, blog articles and social posts in a voice your audience trusts."
+            },
+            "features": [
+                {
+                    "ar": "نصوص المواقع",
+                    "en": "Website copywriting"
+                },
+                {
+                    "ar": "وصف المنتجات",
+                    "en": "Product descriptions"
+                },
+                {
+                    "ar": "مقالات متوافقة مع SEO",
+                    "en": "SEO articles"
+                },
+                {
+                    "ar": "خطط محتوى شهرية",
+                    "en": "Monthly content plans"
+                }
+            ]
+        },
+        {
+            "key": "custom",
+            "icon": "code",
+            "tone": "blue",
+            "image": "custom-development.webp",
+            "popular": false,
+            "title": {
+                "ar": "تطوير مخصص",
+                "en": "Custom Development"
+            },
+            "summary": {
+                "ar": "برمجة مخصصة بجميع لغات البرمجة، وتكاملات API مع أي نظام تحتاجونه.",
+                "en": "Custom development in all programming languages, and API integrations with any system you need."
+            },
+            "description": {
+                "ar": "برمجة مخصصة لأي فكرة: تكاملات API، وأتمتة العمليات، وربط أنظمتكم ببعضها، ولوحات تحكم مصممة خصيصاً لاحتياجكم.",
+                "en": "Custom software for any idea: API integrations, process automation, connecting your systems together, and admin panels built for your needs."
+            },
+            "features": [
+                {
+                    "ar": "تكاملات API",
+                    "en": "API integrations"
+                },
+                {
+                    "ar": "أتمتة العمليات",
+                    "en": "Process automation"
+                },
+                {
+                    "ar": "ربط الأنظمة",
+                    "en": "System integrations"
+                },
+                {
+                    "ar": "لوحات تحكم مخصصة",
+                    "en": "Custom admin panels"
+                }
+            ]
+        },
+        {
+            "key": "apps",
+            "icon": "smartphone",
+            "tone": "amber",
+            "image": "mobile-apps.webp",
+            "popular": false,
+            "title": {
+                "ar": "تطبيقات الهاتف المحمول",
+                "en": "Mobile Apps"
+            },
+            "summary": {
+                "ar": "تطبيقات iOS وAndroid لمتجركم الإلكتروني أو نظام إدارتكم. تطبيقات سريعة وسهلة الاستخدام.",
+                "en": "iOS & Android apps for your e-commerce or management system. Fast and user-friendly applications."
+            },
+            "description": {
+                "ar": "تطبيقات iOS وAndroid سريعة وسهلة الاستخدام لمتجركم أو نظامكم، مبنية بـ Flutter أو React Native ومربوطة بنفس لوحة التحكم.",
+                "en": "Fast, easy-to-use iOS and Android apps for your store or system, built with Flutter or React Native and connected to the same dashboard."
+            },
+            "features": [
+                {
+                    "ar": "تطبيقات المتاجر",
+                    "en": "E-commerce apps"
+                },
+                {
+                    "ar": "تطبيقات التوصيل",
+                    "en": "Delivery apps"
+                },
+                {
+                    "ar": "تطبيقات الأعمال",
+                    "en": "Business apps"
+                },
+                {
+                    "ar": "النشر على المتاجر",
+                    "en": "App Store & Play publishing"
+                }
+            ]
+        }
+    ],
+    "testimonials": [
+        {
+            "name": {
+                "ar": "أحمد محمد",
+                "en": "Ahmed Mohammed"
+            },
+            "role": {
+                "ar": "المدير التنفيذي، شركة النخبة",
+                "en": "CEO, Elite Company"
+            },
+            "quote": {
+                "ar": "تعاملنا مع كودلك كان من أفضل القرارات التي اتخذناها. فريق محترف، التزام بالمواعيد، وجودة تفوق التوقعات. موقعنا الجديد ضاعف مبيعاتنا خلال ٣ أشهر.",
+                "en": "Working with Codlek was one of the best decisions we made. Professional team, commitment to deadlines, and quality that exceeds expectations. Our new website doubled our sales in 3 months."
+            }
+        },
+        {
+            "name": {
+                "ar": "سارة العتيبي",
+                "en": "Sarah Al-Otaibi"
+            },
+            "role": {
+                "ar": "مؤسسة، متجر لمسة",
+                "en": "Founder, Lamsa Store"
+            },
+            "quote": {
+                "ar": "من الفكرة إلى الإطلاق، رافقني فريق كودلك في كل خطوة. التطبيق يعمل بسلاسة والعملاء سعداء جداً. شكراً لكم على الاحترافية والصبر.",
+                "en": "From idea to launch, the Codlek team accompanied me every step. The app works smoothly and customers are very happy. Thank you for the professionalism and patience."
+            }
+        },
+        {
+            "name": {
+                "ar": "خالد الشمري",
+                "en": "Khalid Al-Shammari"
+            },
+            "role": {
+                "ar": "مدير التقنية، مجموعة الوفاء",
+                "en": "CTO, Al-Wafa Group"
+            },
+            "quote": {
+                "ar": "الحلول السحابية التي قدمها فريق كودلك وفرت علينا تكاليف ضخمة وحسّنت أداء أنظمتنا بشكل ملحوظ. شراكة استراتيجية حقيقية.",
+                "en": "The cloud solutions provided by the Codlek team saved us huge costs and significantly improved our systems’ performance. A true strategic partnership."
+            }
+        },
+        {
+            "name": {
+                "ar": "منى الحربي",
+                "en": "Mona Al-Harbi"
+            },
+            "role": {
+                "ar": "مديرة التسويق، مؤسسة إبداع",
+                "en": "Marketing Director, Ibdaa Foundation"
+            },
+            "quote": {
+                "ar": "التعاون مع كودلك في تطوير موقعنا ومنصتنا التعليمية كان تجربة رائعة. فريق يستمع ويفهم ويبدع في التنفيذ.",
+                "en": "Collaborating with Codlek on our website and learning platform was a wonderful experience. A team that listens, understands, and excels in execution."
+            }
+        }
+    ]
+}

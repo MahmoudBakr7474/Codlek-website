@@ -2,6 +2,17 @@
 
 > اتكتبت 2026-10-23. المرجع: نسخة Laravel في `D:\Codlek\codlek-laravel`، ومش هتتلمس خالص (هنقرا منها بس).
 
+## الحالة
+
+- **المالك وافق على الخطة** بالمقترحات اللي في قسم 7 (2026-10-23).
+- **المرحلة 0 خلصت:** الريبو، و `api/Codlek.slnx` (Api + Tests + Import)، و `web/` (Next.js 16.4)، و `admin/` (Refine 5 + Ant Design 5). التلاتة بيعملوا build، وتست الـ health أخضر.
+- **المرحلة 1 خلصت:**
+  - المحتوى الافتراضي والنصوص اتصدّروا لـ `api/src/Codlek.Api/Content/` (31 مفتاح إعدادات، و 192 نص لكل لغة).
+  - الداتا اتنقلت لـ LocalDB بنفس الـ IDs وكل الأعداد مطابقة.
+  - العربي في المشاريع والمقالات والخدمات مطابق (نفس الـ hash)، والإعدادات الـ 11 مطابقة بعد الـ parse.
+  - الأوقات اتحولت من توقيت القاهرة لـ UTC، و 21 صورة اتنسخت لـ `wwwroot/uploads` (برا git).
+- **الجاي:** المرحلة 2 (الـ API).
+
 ---
 
 ## 1. القرارات اللي اتاخدت
@@ -22,7 +33,7 @@
 ```
 D:\Codlek\codlek-dotnet\
   api/
-    Codlek.sln
+    Codlek.slnx
     src/Codlek.Api/            ← الـ API (endpoints, EF, الإعدادات, الإيميلات, الرفع)
     tests/Codlek.Api.Tests/    ← xUnit + WebApplicationFactory (داتابيز LocalDB للتستات)
     tools/Codlek.Import/       ← أداة تنقل الداتا مرة واحدة من SQLite لـ SQL Server

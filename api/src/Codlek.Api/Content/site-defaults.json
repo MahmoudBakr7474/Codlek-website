@@ -1,0 +1,887 @@
+{
+    "home.hero_stats": [
+        {
+            "value": "4.9/5",
+            "label": {
+                "ar": "تقييم العملاء",
+                "en": "Client rating"
+            }
+        },
+        {
+            "value": "500+",
+            "label": {
+                "ar": "مشروع ناجح",
+                "en": "Successful projects"
+            }
+        },
+        {
+            "value": "{years}+",
+            "label": {
+                "ar": "سنوات خبرة",
+                "en": "Years of experience"
+            }
+        }
+    ],
+    "home.hero_visual": "image",
+    "home.hero_image": null,
+    "home.hero_trust_visible": true,
+    "home.hero_main_project": null,
+    "home.hero_second_project": null,
+    "home.sections": [
+        {
+            "key": "services",
+            "visible": true
+        },
+        {
+            "key": "projects",
+            "visible": true
+        },
+        {
+            "key": "why",
+            "visible": true
+        },
+        {
+            "key": "technologies",
+            "visible": true
+        },
+        {
+            "key": "industries",
+            "visible": true
+        },
+        {
+            "key": "journey",
+            "visible": true
+        },
+        {
+            "key": "team",
+            "visible": true
+        },
+        {
+            "key": "testimonials",
+            "visible": true
+        },
+        {
+            "key": "cta",
+            "visible": true
+        }
+    ],
+    "home.why": {
+        "stats": [
+            {
+                "value": "50+",
+                "label": {
+                    "ar": "خبير متخصص",
+                    "en": "Specialists"
+                }
+            },
+            {
+                "value": "98%",
+                "label": {
+                    "ar": "رضا العملاء",
+                    "en": "Client satisfaction"
+                }
+            },
+            {
+                "value": "24/7",
+                "label": {
+                    "ar": "دعم فني",
+                    "en": "Technical support"
+                }
+            }
+        ],
+        "features": [
+            {
+                "icon": "rocket",
+                "text": {
+                    "ar": "خبرة تتجاوز {years} سنوات في تقنيات الويب والتسويق الرقمي",
+                    "en": "{years}+ years of expertise in web technologies & digital marketing"
+                }
+            },
+            {
+                "icon": "users",
+                "text": {
+                    "ar": "فريق متكامل يفهم السوق المصري والخليجي جيداً",
+                    "en": "A complete team that knows the Egyptian & Gulf markets well"
+                }
+            },
+            {
+                "icon": "target",
+                "text": {
+                    "ar": "نفهم احتياجات عملائكم ونبني على أساسها",
+                    "en": "We understand your customers’ needs and build around them"
+                }
+            },
+            {
+                "icon": "zap",
+                "text": {
+                    "ar": "دعم فني سريع ومتابعة مستمرة بعد الإطلاق",
+                    "en": "Fast technical support and continuous follow-up after launch"
+                }
+            }
+        ]
+    },
+    "home.technologies": [
+        {
+            "name": "WordPress",
+            "color": "#0B63CE"
+        },
+        {
+            "name": "WooCommerce",
+            "color": "#7F54B3"
+        },
+        {
+            "name": "Shopify",
+            "color": "#0FA3A3"
+        },
+        {
+            "name": "React",
+            "color": "#38BDF8"
+        },
+        {
+            "name": "PHP",
+            "color": "#6D78B5"
+        },
+        {
+            "name": "Laravel",
+            "color": "#D6336C"
+        },
+        {
+            "name": "Node.js",
+            "color": "#3C9A3C"
+        },
+        {
+            "name": "MySQL",
+            "color": "#0B7F80"
+        },
+        {
+            "name": "Elementor",
+            "color": "#B8215A"
+        },
+        {
+            "name": "Figma",
+            "color": "#F5A524"
+        },
+        {
+            "name": "Google Ads",
+            "color": "#0B63CE"
+        },
+        {
+            "name": "Meta Ads",
+            "color": "#2F86F0"
+        },
+        {
+            "name": "Search Console",
+            "color": "#0FA3A3"
+        },
+        {
+            "name": "Google Analytics",
+            "color": "#F5A524"
+        },
+        {
+            "name": "Cloudflare",
+            "color": "#E87722"
+        },
+        {
+            "name": "AWS",
+            "color": "#0B1B3F"
+        }
+    ],
+    "home.industries": [
+        {
+            "icon": "shopping-bag",
+            "title": {
+                "ar": "التجارة الإلكترونية",
+                "en": "E-Commerce"
+            },
+            "text": {
+                "ar": "متاجر رقمية متكاملة",
+                "en": "Complete digital stores"
+            }
+        },
+        {
+            "icon": "graduation-cap",
+            "title": {
+                "ar": "التعليم الإلكتروني",
+                "en": "E-Learning"
+            },
+            "text": {
+                "ar": "منصات تعليمية تفاعلية",
+                "en": "Interactive learning platforms"
+            }
+        },
+        {
+            "icon": "heart-pulse",
+            "title": {
+                "ar": "الرعاية الصحية",
+                "en": "Healthcare"
+            },
+            "text": {
+                "ar": "حلول صحية ذكية",
+                "en": "Smart healthcare solutions"
+            }
+        },
+        {
+            "icon": "landmark",
+            "title": {
+                "ar": "الخدمات المالية",
+                "en": "Finance"
+            },
+            "text": {
+                "ar": "تطبيقات مالية آمنة",
+                "en": "Secure financial apps"
+            }
+        },
+        {
+            "icon": "plane",
+            "title": {
+                "ar": "السياحة والسفر",
+                "en": "Tourism"
+            },
+            "text": {
+                "ar": "منصات حجز وسفر",
+                "en": "Booking and travel platforms"
+            }
+        },
+        {
+            "icon": "building-2",
+            "title": {
+                "ar": "العقارات",
+                "en": "Real Estate"
+            },
+            "text": {
+                "ar": "حلول عقارية متطورة",
+                "en": "Advanced real estate solutions"
+            }
+        },
+        {
+            "icon": "utensils",
+            "title": {
+                "ar": "المطاعم والضيافة",
+                "en": "Food & Hospitality"
+            },
+            "text": {
+                "ar": "أنظمة طلب وإدارة",
+                "en": "Ordering and management systems"
+            }
+        },
+        {
+            "icon": "truck",
+            "title": {
+                "ar": "النقل واللوجستيات",
+                "en": "Logistics"
+            },
+            "text": {
+                "ar": "حلول توصيل وتتبع",
+                "en": "Delivery and tracking solutions"
+            }
+        }
+    ],
+    "home.journey": [
+        {
+            "icon": "lightbulb",
+            "title": {
+                "ar": "الفكرة",
+                "en": "Idea"
+            },
+            "text": {
+                "ar": "نستمع إليكم ونفهم فكرتكم جيداً",
+                "en": "We listen and understand your idea"
+            }
+        },
+        {
+            "icon": "target",
+            "title": {
+                "ar": "التخطيط",
+                "en": "Planning"
+            },
+            "text": {
+                "ar": "نحدد الأهداف والميزانية بدقة",
+                "en": "We define goals and budget"
+            }
+        },
+        {
+            "icon": "palette",
+            "title": {
+                "ar": "التصميم",
+                "en": "Design"
+            },
+            "text": {
+                "ar": "تصميم واجهات تجذب العملاء",
+                "en": "Interfaces that attract customers"
+            }
+        },
+        {
+            "icon": "code",
+            "title": {
+                "ar": "التطوير",
+                "en": "Development"
+            },
+            "text": {
+                "ar": "برمجة احترافية وسريعة",
+                "en": "Professional, fast development"
+            }
+        },
+        {
+            "icon": "test-tube",
+            "title": {
+                "ar": "الاختبار",
+                "en": "Testing"
+            },
+            "text": {
+                "ar": "اختبار شامل قبل الإطلاق",
+                "en": "Thorough testing before launch"
+            }
+        },
+        {
+            "icon": "rocket",
+            "title": {
+                "ar": "الإطلاق",
+                "en": "Launch"
+            },
+            "text": {
+                "ar": "إطلاق موقعكم للعالم",
+                "en": "Your site goes live"
+            }
+        },
+        {
+            "icon": "trending-up",
+            "title": {
+                "ar": "النمو",
+                "en": "Growth"
+            },
+            "text": {
+                "ar": "تسويق ودعم مستمر",
+                "en": "Marketing and ongoing support"
+            }
+        }
+    ],
+    "home.team": [
+        {
+            "icon": "clipboard-list",
+            "title": {
+                "ar": "مديرو المشاريع",
+                "en": "Project Managers"
+            },
+            "text": {
+                "ar": "يضمنون سير العمل بسلاسة",
+                "en": "Keep work flowing smoothly"
+            }
+        },
+        {
+            "icon": "users",
+            "title": {
+                "ar": "مديرو المنتجات",
+                "en": "Product Managers"
+            },
+            "text": {
+                "ar": "يحولون الأفكار إلى واقع",
+                "en": "Turn ideas into reality"
+            }
+        },
+        {
+            "icon": "palette",
+            "title": {
+                "ar": "مصممو UI/UX",
+                "en": "UI/UX Designers"
+            },
+            "text": {
+                "ar": "يصنعون تجارب استثنائية",
+                "en": "Craft great experiences"
+            }
+        },
+        {
+            "icon": "code-xml",
+            "title": {
+                "ar": "المطورون",
+                "en": "Developers"
+            },
+            "text": {
+                "ar": "يبنون حلولاً متينة",
+                "en": "Build robust solutions"
+            }
+        },
+        {
+            "icon": "bug",
+            "title": {
+                "ar": "ضمان الجودة",
+                "en": "QA Engineers"
+            },
+            "text": {
+                "ar": "يضمنون جودة كل تفصيلة",
+                "en": "Check every detail"
+            }
+        },
+        {
+            "icon": "megaphone",
+            "title": {
+                "ar": "خبراء التسويق",
+                "en": "Marketing Experts"
+            },
+            "text": {
+                "ar": "ينشرون نجاحكم",
+                "en": "Spread your success"
+            }
+        },
+        {
+            "icon": "search",
+            "title": {
+                "ar": "خبراء SEO",
+                "en": "SEO Specialists"
+            },
+            "text": {
+                "ar": "يزيدون ظهوركم",
+                "en": "Grow your visibility"
+            }
+        }
+    ],
+    "about.stats": [
+        {
+            "value": "500+",
+            "label": {
+                "ar": "مشروع منجز",
+                "en": "Completed projects"
+            }
+        },
+        {
+            "value": "200+",
+            "label": {
+                "ar": "عميل وشركة",
+                "en": "Clients & companies"
+            }
+        },
+        {
+            "value": "50+",
+            "label": {
+                "ar": "خبير متخصص",
+                "en": "Specialists"
+            }
+        },
+        {
+            "value": "{years}+",
+            "label": {
+                "ar": "سنوات خبرة",
+                "en": "Years of experience"
+            }
+        }
+    ],
+    "about.story": [
+        {
+            "ar": "بدأت كودلك كفكرة بسيطة: مساعدة الأعمال على تحقيق أحلامها الرقمية. ومن فريق صغير من المطورين المتحمسين، نمونا لنصبح شركة تقنية متكاملة تخدم عملاء في مختلف القطاعات في مصر والخليج.",
+            "en": "Codlek started as a simple idea: helping businesses achieve their digital dreams. From a small team of passionate developers, we grew into a full technology company serving clients across many sectors in Egypt and the Gulf."
+        },
+        {
+            "ar": "اليوم نفتخر بفريق متنوع من أكثر من 50 خبيراً في التطوير والتصميم والتسويق، يجمعهم هدف واحد: تقديم أفضل الحلول الرقمية لعملائنا.",
+            "en": "Today we are proud of a diverse team of more than 50 specialists in development, design and marketing, all sharing one goal: delivering the best digital solutions to our clients."
+        }
+    ],
+    "about.values": [
+        {
+            "icon": "lightbulb",
+            "title": {
+                "ar": "الابتكار",
+                "en": "Innovation"
+            },
+            "text": {
+                "ar": "نبحث دائماً عن حلول إبداعية ومبتكرة",
+                "en": "We always look for creative, innovative solutions"
+            }
+        },
+        {
+            "icon": "target",
+            "title": {
+                "ar": "الالتزام",
+                "en": "Commitment"
+            },
+            "text": {
+                "ar": "نلتزم بالمواعيد والجودة العالية",
+                "en": "We commit to deadlines and high quality"
+            }
+        },
+        {
+            "icon": "handshake",
+            "title": {
+                "ar": "الشراكة",
+                "en": "Partnership"
+            },
+            "text": {
+                "ar": "نعمل كشركاء حقيقيين لعملائنا",
+                "en": "We work as true partners to our clients"
+            }
+        },
+        {
+            "icon": "heart",
+            "title": {
+                "ar": "الشغف",
+                "en": "Passion"
+            },
+            "text": {
+                "ar": "نحب ما نفعله ونتقنه",
+                "en": "We love what we do and master it"
+            }
+        }
+    ],
+    "about.why": [
+        {
+            "ar": "فريق يفهم السوق المصري والخليجي جيداً",
+            "en": "A team that knows the Egyptian & Gulf markets"
+        },
+        {
+            "ar": "منهجية Agile للتسليم السريع",
+            "en": "Agile methodology for fast delivery"
+        },
+        {
+            "ar": "دعم فني متواصل بعد التسليم",
+            "en": "Continuous technical support after delivery"
+        },
+        {
+            "ar": "أسعار تنافسية بجودة عالمية",
+            "en": "Competitive prices with global quality"
+        },
+        {
+            "ar": "شفافية كاملة في كل مرحلة",
+            "en": "Full transparency at every stage"
+        },
+        {
+            "ar": "التزام حقيقي برضا العملاء",
+            "en": "A real commitment to client satisfaction"
+        }
+    ],
+    "about.satisfaction": "98%",
+    "legal.privacy": [
+        {
+            "title": {
+                "ar": "مقدمة",
+                "en": "Introduction"
+            },
+            "text": {
+                "ar": "نحن في كودلك نلتزم بحماية خصوصيتكم. توضح هذه السياسة كيفية جمعنا واستخدامنا وحمايتنا لمعلوماتكم الشخصية عند استخدام موقعنا الإلكتروني وخدماتنا.",
+                "en": "At Codlek, we are committed to protecting your privacy. This policy explains how we collect, use, and protect your personal information when you use our website and services."
+            }
+        },
+        {
+            "title": {
+                "ar": "المعلومات التي نجمعها",
+                "en": "Information We Collect"
+            },
+            "items": [
+                {
+                    "ar": "الاسم الكامل وبيانات التواصل (البريد الإلكتروني، رقم الهاتف)",
+                    "en": "Full name and contact details (email, phone number)"
+                },
+                {
+                    "ar": "معلومات الشركة أو المؤسسة",
+                    "en": "Company or organization information"
+                },
+                {
+                    "ar": "تفاصيل المشروع والمتطلبات",
+                    "en": "Project details and requirements"
+                },
+                {
+                    "ar": "السيرة الذاتية وبيانات التقديم عند التقدم لوظيفة",
+                    "en": "Your CV and application details when you apply for a job"
+                },
+                {
+                    "ar": "بيانات التصفح والاستخدام (عبر ملفات تعريف الارتباط)",
+                    "en": "Browsing and usage data (via cookies)"
+                }
+            ]
+        },
+        {
+            "title": {
+                "ar": "كيف نستخدم معلوماتكم",
+                "en": "How We Use Your Information"
+            },
+            "items": [
+                {
+                    "ar": "التواصل معكم بخصوص استفساراتكم وطلباتكم",
+                    "en": "Communicating with you regarding your inquiries and requests"
+                },
+                {
+                    "ar": "تقديم خدماتنا وتنفيذ المشاريع",
+                    "en": "Providing our services and executing projects"
+                },
+                {
+                    "ar": "تحسين موقعنا وخدماتنا",
+                    "en": "Improving our website and services"
+                },
+                {
+                    "ar": "إرسال تحديثات ومعلومات تسويقية (بموافقتكم)",
+                    "en": "Sending updates and marketing information (with your consent)"
+                }
+            ]
+        },
+        {
+            "title": {
+                "ar": "حماية المعلومات",
+                "en": "Information Protection"
+            },
+            "text": {
+                "ar": "نتخذ إجراءات أمنية صارمة لحماية معلوماتكم من الوصول غير المصرح به أو التغيير أو الإفصاح أو الإتلاف. نستخدم تشفير SSL وجدران حماية متقدمة لضمان أمان بياناتكم.",
+                "en": "We take strict security measures to protect your information from unauthorized access, alteration, disclosure, or destruction. We use SSL encryption and advanced firewalls to keep your data secure."
+            }
+        },
+        {
+            "title": {
+                "ar": "مشاركة المعلومات",
+                "en": "Information Sharing"
+            },
+            "text": {
+                "ar": "لا نبيع أو نؤجر أو نشارك معلوماتكم الشخصية مع أطراف ثالثة إلا في الحالات التالية: بموافقتكم الصريحة، أو للامتثال للقانون، أو لحماية حقوقنا.",
+                "en": "We do not sell, rent, or share your personal information with third parties except: with your explicit consent, to comply with the law, or to protect our rights."
+            }
+        },
+        {
+            "title": {
+                "ar": "ملفات تعريف الارتباط (Cookies)",
+                "en": "Cookies"
+            },
+            "text": {
+                "ar": "نستخدم ملفات تعريف الارتباط لتحسين تجربتكم على موقعنا وتذكّر تفضيلاتكم مثل الوضع الليلي. يمكنكم التحكم في إعدادات ملفات تعريف الارتباط من خلال متصفحكم.",
+                "en": "We use cookies to improve your experience on our website and remember preferences such as dark mode. You can control cookie settings through your browser."
+            }
+        },
+        {
+            "title": {
+                "ar": "حقوقكم",
+                "en": "Your Rights"
+            },
+            "items": [
+                {
+                    "ar": "الوصول إلى معلوماتكم الشخصية",
+                    "en": "Access your personal information"
+                },
+                {
+                    "ar": "طلب تصحيح أو حذف بياناتكم",
+                    "en": "Request correction or deletion of your data"
+                },
+                {
+                    "ar": "الاعتراض على معالجة بياناتكم",
+                    "en": "Object to the processing of your data"
+                },
+                {
+                    "ar": "سحب موافقتكم في أي وقت",
+                    "en": "Withdraw your consent at any time"
+                }
+            ]
+        },
+        {
+            "title": {
+                "ar": "التواصل معنا",
+                "en": "Contact Us"
+            },
+            "text": {
+                "ar": "لأي استفسارات حول سياسة الخصوصية، يرجى التواصل معنا عبر البريد الإلكتروني: {email}",
+                "en": "For any questions about this privacy policy, please email us at: {email}"
+            }
+        }
+    ],
+    "legal.terms": [
+        {
+            "title": {
+                "ar": "مقدمة",
+                "en": "Introduction"
+            },
+            "text": {
+                "ar": "مرحباً بكم في موقع كودلك. باستخدامكم لهذا الموقع أو خدماتنا، فإنكم توافقون على الالتزام بهذه الشروط والأحكام. يرجى قراءتها بعناية قبل استخدام خدماتنا.",
+                "en": "Welcome to the Codlek website. By using this website or our services, you agree to be bound by these terms and conditions. Please read them carefully before using our services."
+            }
+        },
+        {
+            "title": {
+                "ar": "الخدمات المقدمة",
+                "en": "Services Provided"
+            },
+            "text": {
+                "ar": "تقدم كودلك مجموعة من الخدمات الرقمية تشمل:",
+                "en": "Codlek offers a range of digital services including:"
+            },
+            "items": [
+                {
+                    "ar": "تصميم وتطوير المواقع الإلكترونية",
+                    "en": "Website design and development"
+                },
+                {
+                    "ar": "تطوير تطبيقات الهاتف المحمول",
+                    "en": "Mobile application development"
+                },
+                {
+                    "ar": "تصميم المتاجر الإلكترونية",
+                    "en": "E-commerce store design"
+                },
+                {
+                    "ar": "التسويق الرقمي وتحسين محركات البحث",
+                    "en": "Digital marketing and SEO"
+                },
+                {
+                    "ar": "التصميم الجرافيكي والهوية البصرية",
+                    "en": "Graphic design and visual identity"
+                },
+                {
+                    "ar": "أنظمة إدارة الشركات",
+                    "en": "Business management systems"
+                }
+            ]
+        },
+        {
+            "title": {
+                "ar": "التعاقد والأسعار",
+                "en": "Contracting and Pricing"
+            },
+            "items": [
+                {
+                    "ar": "جميع الأسعار المعروضة قابلة للتفاوض وتختلف حسب متطلبات كل مشروع",
+                    "en": "All prices are negotiable and vary according to project requirements"
+                },
+                {
+                    "ar": "يتم تحديد السعر النهائي بعد دراسة متطلبات المشروع بالتفصيل",
+                    "en": "The final price is set after studying the project requirements in detail"
+                },
+                {
+                    "ar": "يتم دفع 50% مقدماً عند بدء العمل والباقي عند التسليم",
+                    "en": "50% is paid upfront and the rest upon delivery"
+                },
+                {
+                    "ar": "لا يتم البدء في أي مشروع إلا بعد استلام الدفعة الأولى",
+                    "en": "No project starts until the first payment is received"
+                }
+            ]
+        },
+        {
+            "title": {
+                "ar": "حقوق الملكية الفكرية",
+                "en": "Intellectual Property Rights"
+            },
+            "items": [
+                {
+                    "ar": "تنتقل ملكية العمل النهائي للعميل بعد سداد كامل المستحقات",
+                    "en": "Ownership of the final work transfers to the client after full payment"
+                },
+                {
+                    "ar": "تحتفظ كودلك بحق عرض المشروع في معرض أعمالها",
+                    "en": "Codlek reserves the right to display the project in its portfolio"
+                },
+                {
+                    "ar": "لا يحق للعميل المطالبة بملفات المصدر إلا بموافقة مسبقة",
+                    "en": "The client cannot claim source files without prior agreement"
+                },
+                {
+                    "ar": "جميع المحتويات المقدمة من العميل تبقى ملكاً له",
+                    "en": "All content provided by the client remains their property"
+                }
+            ]
+        },
+        {
+            "title": {
+                "ar": "التعديلات والمراجعات",
+                "en": "Modifications and Revisions"
+            },
+            "items": [
+                {
+                    "ar": "يشمل كل مشروع عدداً محدداً من المراجعات المجانية (يُحدد في العقد)",
+                    "en": "Each project includes a set number of free revisions (specified in the contract)"
+                },
+                {
+                    "ar": "التعديلات الإضافية تخضع لرسوم إضافية",
+                    "en": "Additional modifications are subject to additional fees"
+                },
+                {
+                    "ar": "التعديلات الجوهرية في نطاق العمل قد تستدعي إعادة تسعير",
+                    "en": "Significant changes in scope may require repricing"
+                }
+            ]
+        },
+        {
+            "title": {
+                "ar": "الدعم الفني والصيانة",
+                "en": "Technical Support and Maintenance"
+            },
+            "items": [
+                {
+                    "ar": "نقدم فترة دعم فني مجاني لمدة شهر بعد تسليم المشروع",
+                    "en": "We provide one month of free technical support after project delivery"
+                },
+                {
+                    "ar": "خدمات الصيانة الدورية متاحة باشتراك شهري أو سنوي",
+                    "en": "Regular maintenance is available on a monthly or yearly subscription"
+                },
+                {
+                    "ar": "الدعم الطارئ متاح على مدار الساعة للعملاء المشتركين",
+                    "en": "24/7 emergency support is available for subscribed clients"
+                }
+            ]
+        },
+        {
+            "title": {
+                "ar": "إلغاء الخدمة",
+                "en": "Service Cancellation"
+            },
+            "items": [
+                {
+                    "ar": "يحق للعميل إلغاء المشروع قبل البدء مع استرداد المبلغ المدفوع",
+                    "en": "The client can cancel the project before work starts with a refund"
+                },
+                {
+                    "ar": "في حال الإلغاء بعد البدء، يتم احتساب نسبة العمل المنجز",
+                    "en": "If cancelled after starting, the completed share of the work is charged"
+                },
+                {
+                    "ar": "لا يتم استرداد أي مبالغ بعد تسليم المشروع",
+                    "en": "No refunds after project delivery"
+                }
+            ]
+        },
+        {
+            "title": {
+                "ar": "حدود المسؤولية",
+                "en": "Limitation of Liability"
+            },
+            "text": {
+                "ar": "لا تتحمل كودلك المسؤولية عن أي أضرار غير مباشرة أو خسائر ناتجة عن استخدام خدماتنا. مسؤوليتنا القصوى تقتصر على قيمة المبلغ المدفوع مقابل الخدمة.",
+                "en": "Codlek is not liable for any indirect damages or losses resulting from the use of our services. Our maximum liability is limited to the amount paid for the service."
+            }
+        },
+        {
+            "title": {
+                "ar": "القانون الساري",
+                "en": "Governing Law"
+            },
+            "text": {
+                "ar": "تخضع هذه الشروط والأحكام للقوانين المعمول بها في جمهورية مصر العربية. أي نزاعات تُحل ودياً أولاً، وفي حال تعذر ذلك، تُحال للقضاء المصري المختص.",
+                "en": "These terms and conditions are governed by the laws of the Arab Republic of Egypt. Disputes are first resolved amicably and, if that is not possible, referred to the competent Egyptian courts."
+            }
+        },
+        {
+            "title": {
+                "ar": "التواصل معنا",
+                "en": "Contact Us"
+            },
+            "text": {
+                "ar": "لأي استفسارات حول الشروط والأحكام، يرجى التواصل معنا عبر البريد الإلكتروني: {email}",
+                "en": "For any questions about these terms, please email us at: {email}"
+            }
+        }
+    ],
+    "contact.email": "newelgamalxx@gmail.com",
+    "contact.phone": "01144745671",
+    "contact.phone_international": "+201144745671",
+    "contact.whatsapp": "201144745671",
+    "company.founded": 2019,
+    "social.links": [
+        {
+            "platform": "facebook",
+            "url": "https://www.facebook.com/codlek.company"
+        },
+        {
+            "platform": "instagram",
+            "url": "https://www.instagram.com/codlek_company/"
+        }
+    ],
+    "mail.notify_emails": [
+        "newelgamalxx@gmail.com"
+    ],
+    "mail.send_confirmation": true,
+    "seo.og_image": null,
+    "appearance.loader": "always",
+    "appearance.theme": "light",
+    "appearance.floating_contact": true
+}

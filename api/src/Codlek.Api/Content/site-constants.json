@@ -1,0 +1,109 @@
+{
+    "home_sections": [
+        "services",
+        "projects",
+        "why",
+        "technologies",
+        "industries",
+        "journey",
+        "team",
+        "testimonials",
+        "cta"
+    ],
+    "hero_visuals": [
+        "image",
+        "projects"
+    ],
+    "hero_image": "images/hero/hero-illustration.webp",
+    "tech_color": "#0B63CE",
+    "loader_modes": [
+        "always",
+        "session",
+        "off"
+    ],
+    "themes": [
+        "light",
+        "dark",
+        "system"
+    ],
+    "social_platforms": {
+        "facebook": {
+            "label": "Facebook",
+            "label_ar": "فيسبوك",
+            "icon": "si-facebook",
+            "tile": "bg-[#1877F2] text-white"
+        },
+        "instagram": {
+            "label": "Instagram",
+            "label_ar": "إنستجرام",
+            "icon": "si-instagram",
+            "tile": "bg-linear-to-br from-[#F58529] via-[#DD2A7B] to-[#8134AF] text-white"
+        },
+        "linkedin": {
+            "label": "LinkedIn",
+            "label_ar": "لينكدإن",
+            "icon": "lucide-linkedin",
+            "tile": "bg-[#0A66C2] text-white"
+        },
+        "x": {
+            "label": "X",
+            "label_ar": "إكس",
+            "icon": "si-x",
+            "tile": "bg-[#0F1419] text-white"
+        },
+        "tiktok": {
+            "label": "TikTok",
+            "label_ar": "تيك توك",
+            "icon": "si-tiktok",
+            "tile": "bg-[#0F1419] text-white"
+        },
+        "youtube": {
+            "label": "YouTube",
+            "label_ar": "يوتيوب",
+            "icon": "si-youtube",
+            "tile": "bg-[#E62117] text-white"
+        },
+        "behance": {
+            "label": "Behance",
+            "label_ar": "بيهانس",
+            "icon": "si-behance",
+            "tile": "bg-[#1769FF] text-white"
+        },
+        "dribbble": {
+            "label": "Dribbble",
+            "label_ar": "دريبل",
+            "icon": "si-dribbble",
+            "tile": "bg-[#C32361] text-white"
+        },
+        "snapchat": {
+            "label": "Snapchat",
+            "label_ar": "سناب شات",
+            "icon": "si-snapchat",
+            "tile": "bg-[#FFFC00] text-[#0F1419]"
+        },
+        "telegram": {
+            "label": "Telegram",
+            "label_ar": "تيليجرام",
+            "icon": "si-telegram",
+            "tile": "bg-[#1C8ADB] text-white"
+        },
+        "threads": {
+            "label": "Threads",
+            "label_ar": "ثريدز",
+            "icon": "si-threads",
+            "tile": "bg-[#0F1419] text-white"
+        },
+        "github": {
+            "label": "GitHub",
+            "label_ar": "جيت هب",
+            "icon": "si-github",
+            "tile": "bg-[#0F1419] text-white"
+        }
+    },
+    "service_tones": {
+        "blue": "أزرق",
+        "teal": "تركواز",
+        "magenta": "فوشيا",
+        "amber": "ذهبي"
+    }
+}

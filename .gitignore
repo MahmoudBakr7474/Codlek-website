@@ -1,0 +1,41 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+TestResults/
+*.binlog
+
+# Node / Next.js / Vite
+node_modules/
+.next/
+out/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+.vercel/
+playwright-report/
+test-results/
+coverage/
+
+# Secrets and local config (this repo is public)
+.env
+.env.*
+!.env.example
+appsettings.*.local.json
+*.pfx
+
+# Data that never goes into git
+*.sqlite
+*.db
+*.mdf
+*.ldf
+api/src/Codlek.Api/wwwroot/uploads/
+api/src/Codlek.Api/storage/
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
