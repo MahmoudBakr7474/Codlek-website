@@ -108,6 +108,15 @@ public class PublicPagesTests(ApiFactory factory)
         Assert.Equal(HttpStatusCode.OK, (await client.GetAsync("/api/public/en/posts?page=abc")).StatusCode);
     }
 
+    [Fact]
+    public async Task Times_leave_the_api_marked_as_utc()
+    {
+        // Without the "Z" a browser reads the time as its own local time (3 hours off in Cairo).
+        var json = await client.GetStringAsync("/api/public/en/posts");
+
+        Assert.Matches("\"publishedAt\":\"[0-9T:.-]+Z\"", json);
+    }
+
     [Theory]
     [InlineData("scheduled-post")]
     [InlineData("draft-post")]

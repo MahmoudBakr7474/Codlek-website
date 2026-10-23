@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using Codlek.Api.Data;
 using Codlek.Api.Mail;
 using Codlek.Api.Site;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 
 namespace Codlek.Api.Admin;
@@ -249,7 +250,9 @@ public static partial class AdminSettings
             return Results.NotFound();
         }
 
-        return Results.File(path, "application/octet-stream", application!.CvOriginalName ?? Path.GetFileName(path));
+        var name = application!.CvOriginalName ?? Path.GetFileName(path);
+        var type = new FileExtensionContentTypeProvider().TryGetContentType(path, out var known) ? known : "application/octet-stream";
+        return Results.File(path, type, name);
     }
 
     private static async Task<IResult> Dashboard(CodlekDbContext db, AdminContext context, TimeProvider clock, CancellationToken ct)

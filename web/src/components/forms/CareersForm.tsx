@@ -38,7 +38,13 @@ export function CareersForm({ locale, texts, jobs, selectedJob, privacyHref }: P
     function choose(event: React.ChangeEvent<HTMLInputElement>) {
         const file = event.target.files?.[0];
         setFileError('');
-        setErrors(({ cv: _drop, ...rest }) => rest); // eslint-disable-line @typescript-eslint/no-unused-vars
+        setErrors(({ cv, ...rest }) => {
+            // "CV or profile link" sits under both fields; a chosen file answers it for both.
+            if (cv && rest.profile_url === cv) {
+                delete rest.profile_url;
+            }
+            return rest;
+        });
         // Files over 5 MB are refused here, before a long upload that would fail.
         if (file && file.size > MAX_CV) {
             event.target.value = '';

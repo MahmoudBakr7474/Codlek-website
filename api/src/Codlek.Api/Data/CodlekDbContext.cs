@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Codlek.Api.Data;
 
@@ -111,6 +112,17 @@ public class CodlekDbContext(DbContextOptions<CodlekDbContext> options) : DbCont
         }
     }
 
+    /// <summary>
+    /// Times are stored in UTC. Read back they say so (Kind = Utc), so the JSON
+    /// carries the "Z" and browsers show them in their own time zone; a local
+    /// time written in is converted first.
+    /// </summary>
+    protected override void ConfigureConventions(ModelConfigurationBuilder configuration)
+    {
+        configuration.Properties<DateTime>().HaveConversion<UtcDateTimeConverter>();
+        configuration.Properties<DateTime?>().HaveConversion<UtcDateTimeConverter>();
+    }
+
     public override int SaveChanges(bool acceptAllChangesOnSuccess)
     {
         Stamp();
@@ -148,3 +160,8 @@ public class CodlekDbContext(DbContextOptions<CodlekDbContext> options) : DbCont
     private static void Text<T>(Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder<T> property) =>
         property.HasColumnType("nvarchar(max)");
 }
+
+/// <summary>UTC in the database, Kind = Utc in the app (see <see cref="CodlekDbContext.ConfigureConventions"/>).</summary>
+public sealed class UtcDateTimeConverter() : ValueConverter<DateTime, DateTime>(
+    value => value.Kind == DateTimeKind.Local ? value.ToUniversalTime() : value,
+    value => DateTime.SpecifyKind(value, DateTimeKind.Utc));

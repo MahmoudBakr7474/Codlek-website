@@ -8,7 +8,9 @@
 | `web/` | الموقع العام: Next.js (عربي على `/`، إنجليزي على `/en`) | Vercel |
 | `admin/` | لوحة التحكم: React + Refine + Ant Design | مع الـ API تحت `/admin` |
 
-الخطة والمراحل في [docs/PLAN.md](docs/PLAN.md)، وملاحظات التطوير في [CLAUDE.md](CLAUDE.md).
+- الخطة والمراحل وحالة الشغل: [docs/PLAN.md](docs/PLAN.md)
+- الرفع خطوة بخطوة: [docs/DEPLOY.md](docs/DEPLOY.md)
+- ملاحظات التطوير: [CLAUDE.md](CLAUDE.md)
 
 ## التشغيل على الجهاز
 
@@ -22,6 +24,25 @@ dotnet run --project src/Codlek.Api        # http://localhost:5080
 # الموقع
 cd web && npm install && npm run dev       # http://localhost:3000
 
-# لوحة التحكم
-cd admin && npm install && npm run dev     # http://localhost:5173
+# لوحة التحكم (وهي بتتطور)
+cd admin && npm install && npm run dev     # http://localhost:5173/admin/
+
+# لوحة التحكم جوه الـ API (زي السيرفر)
+cd admin && npm run build                  # http://localhost:5080/admin/
 ```
+
+## التستات
+
+```bash
+cd api && dotnet test Codlek.slnx          # xUnit على داتابيز Codlek_Tests في LocalDB
+cd web && npm run lint
+cd admin && npm run lint
+```
+
+## الرفع
+
+```bash
+powershell -ExecutionPolicy Bypass -File deploy/publish-api.ps1 -Zip
+```
+
+بيعمل build للوحة، و publish للـ API، والناتج بيبقى في `out/api`. الباقي في [docs/DEPLOY.md](docs/DEPLOY.md).

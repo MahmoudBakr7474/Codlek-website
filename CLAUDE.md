@@ -22,7 +22,15 @@ Rewrite of the Codlek company site from Laravel. The plan, decisions and phase s
 - Database for development: **LocalDB** `(localdb)\MSSQLLocalDB`, database `Codlek`. Do **not** use `localhost` /
   `MSSQLSERVER` (another live system uses it) or `SQLEXPRESS`.
 - API: `cd api && dotnet run --project src/Codlek.Api` → http://localhost:5080 (`/api/health`, `/openapi/v1.json`).
-- Tests: `cd api && dotnet test Codlek.slnx`.
+  On this laptop the freshly built `Codlek.Api.exe` is blocked from writing files (uploads, CVs, keys fail with
+  `FileNotFoundException`), apparently Windows Controlled Folder Access. Run it through `dotnet.exe` instead:
+  `cd api/src/Codlek.Api && ASPNETCORE_ENVIRONMENT=Development ASPNETCORE_URLS=http://localhost:5080 dotnet bin/Debug/net10.0/Codlek.Api.dll`.
+  Shell tools (`sed -i`, `cp`, python) can't write under `admin/` either: use the editor tools.
+- Stopping a background `npm start` / `dotnet` task can leave the server process running: free the port by
+  killing the process that listens on it (3000 / 5080), or the next start fails with EADDRINUSE.
+- Tests: `cd api && dotnet test Codlek.slnx` (stop the API first: the build can't replace a running dll).
+- Dashboard: `cd admin && npm run build` builds it into `api/src/Codlek.Api/wwwroot/admin` (gitignored).
+- Publish for MonsterASP: `deploy/publish-api.ps1` → `out/api`. Deploy steps: `docs/DEPLOY.md`.
 - Migrations: `cd api && dotnet ef migrations add <Name> -p src/Codlek.Api -o Data/Migrations`, then
   `dotnet ef database update -p src/Codlek.Api` (`dotnet-ef` is a local tool: `dotnet tool restore`).
 - Re-export content from Laravel: `php api/tools/laravel-export/export.php D:/Codlek/codlek-laravel api/src/Codlek.Api/Content`
@@ -33,11 +41,17 @@ Rewrite of the Codlek company site from Laravel. The plan, decisions and phase s
 
 ## Conventions
 - Same tables and columns as Laravel (snake_case via `UseSnakeCaseNamingConvention()`), same ids. Bilingual
-  columns are `*Ar` / `*En` pairs. Timestamps are UTC (Laravel stored Africa/Cairo; the import converts).
+  columns are `*Ar` / `*En` pairs. Timestamps are UTC (Laravel stored Africa/Cairo; the import converts), read
+  back with Kind = Utc (`UtcDateTimeConverter`) so the JSON carries the `Z`; the site and dashboard format them
+  in Africa/Cairo.
 - `settings` = one row per key, raw JSON value. Defaults are `Content/site-defaults.json` (exported from
   `Site::default()`); a key missing from the table means "use the default". UI texts: `Content/lang/{ar,en}.json`
   (192 keys each); owner overrides live in the `texts` setting, storing only lines that differ.
 - Tokens `{years}`, `{email}`, `{phone}` in content are filled when read.
+- Admin sign-in: httpOnly cookie with a stamp of the password hash (a new password ends other sessions); keys
+  persist in `storage/keys`. Every admin write carries `X-Codlek-Admin: 1` and pings the site's revalidate hook.
+- Unknown articles and blog pages past the last get their 404 in `web/src/proxy.ts`: the pages stream, so a
+  `notFound()` inside them can only add `noindex` to a 200.
 
 ## Git
 - This repo is **public** (`github.com/MahmoudBakr7474/Codlek-website`): no secrets, connection strings with
