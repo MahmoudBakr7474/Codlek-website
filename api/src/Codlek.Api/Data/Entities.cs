@@ -13,7 +13,18 @@ public interface IHasTimestamps
     DateTime? UpdatedAt { get; set; }
 }
 
-public class ProjectCategory : IHasTimestamps
+public interface IEntity
+{
+    int Id { get; }
+}
+
+/// <summary>Rows the owner orders by hand in the admin (sort_order, then id).</summary>
+public interface ISortable
+{
+    int SortOrder { get; set; }
+}
+
+public class ProjectCategory : IHasTimestamps, IEntity, ISortable
 {
     public int Id { get; set; }
     public required string Slug { get; set; }
@@ -27,7 +38,7 @@ public class ProjectCategory : IHasTimestamps
     public List<Project> Projects { get; set; } = [];
 }
 
-public class Project : IHasTimestamps
+public class Project : IHasTimestamps, IEntity, ISortable
 {
     public int Id { get; set; }
     public int? ProjectCategoryId { get; set; }
@@ -46,7 +57,7 @@ public class Project : IHasTimestamps
     public DateTime? UpdatedAt { get; set; }
 }
 
-public class Post : IHasTimestamps
+public class Post : IHasTimestamps, IEntity
 {
     public int Id { get; set; }
     public required string Slug { get; set; }
@@ -65,7 +76,7 @@ public class Post : IHasTimestamps
     public DateTime? UpdatedAt { get; set; }
 }
 
-public class JobOpening : IHasTimestamps
+public class JobOpening : IHasTimestamps, IEntity, ISortable
 {
     public int Id { get; set; }
     public required string TitleAr { get; set; }
@@ -86,7 +97,7 @@ public class JobOpening : IHasTimestamps
     public List<JobApplication> Applications { get; set; } = [];
 }
 
-public class JobApplication : IHasTimestamps
+public class JobApplication : IHasTimestamps, IEntity
 {
     public int Id { get; set; }
     public int? JobOpeningId { get; set; }
@@ -105,7 +116,7 @@ public class JobApplication : IHasTimestamps
     public DateTime? UpdatedAt { get; set; }
 }
 
-public class ContactMessage : IHasTimestamps
+public class ContactMessage : IHasTimestamps, IEntity
 {
     public int Id { get; set; }
     public required string Name { get; set; }
@@ -120,7 +131,7 @@ public class ContactMessage : IHasTimestamps
     public DateTime? UpdatedAt { get; set; }
 }
 
-public class Service : IHasTimestamps
+public class Service : IHasTimestamps, IEntity, ISortable
 {
     public int Id { get; set; }
 
@@ -154,7 +165,7 @@ public class LocalizedText
     public string En { get; set; } = "";
 }
 
-public class Testimonial : IHasTimestamps
+public class Testimonial : IHasTimestamps, IEntity, ISortable
 {
     public int Id { get; set; }
     public required string NameAr { get; set; }

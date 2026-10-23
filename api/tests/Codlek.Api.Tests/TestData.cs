@@ -7,6 +7,9 @@ public static class TestData
 {
     public const string NotifyEmail = "owner@codlek.test";
 
+    public const string AdminEmail = "admin@codlek.test";
+    public const string AdminPassword = "test-password";
+
     public static async Task SeedAsync(CodlekDbContext db)
     {
         var shops = new ProjectCategory { Slug = "ecommerce", NameAr = "متاجر", NameEn = "Stores", Icon = "shopping-cart", SortOrder = 1 };
@@ -42,6 +45,10 @@ public static class TestData
         });
 
         db.Settings.Add(new Setting { Key = "mail.notify_emails", Value = $"[\"{NotifyEmail}\"]" });
+
+        db.Users.AddRange(
+            new User { Name = "Codlek Admin", Email = AdminEmail, Password = BCrypt.Net.BCrypt.HashPassword(AdminPassword), IsAdmin = true },
+            new User { Name = "Not admin", Email = "user@codlek.test", Password = BCrypt.Net.BCrypt.HashPassword(AdminPassword) });
 
         await db.SaveChangesAsync();
     }

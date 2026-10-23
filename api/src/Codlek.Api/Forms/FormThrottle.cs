@@ -22,19 +22,36 @@ public sealed class FormThrottle(IMemoryCache cache, TimeProvider clock)
     {
         lock (gate)
         {
-            var now = clock.GetUtcNow();
-            var windows = Limits.Select(l => (l, Key: $"forms:{l.Name}:{visitor}")).ToList();
-
-            foreach (var (limit, key) in windows)
+            if (Blocked(visitor))
             {
-                if (cache.TryGetValue(key, out Window? window) && window!.Count >= limit.Limit && window.Ends > now)
-                {
-                    return false;
-                }
+                return false;
             }
 
-            foreach (var (limit, key) in windows)
+            Hit(visitor);
+            return true;
+        }
+    }
+
+    /// <summary>Whether the visitor is over a limit, without counting an attempt.</summary>
+    public bool Blocked(string visitor)
+    {
+        lock (gate)
+        {
+            var now = clock.GetUtcNow();
+            return Limits.Any(limit =>
+                cache.TryGetValue($"forms:{limit.Name}:{visitor}", out Window? window) && window!.Count >= limit.Limit && window.Ends > now);
+        }
+    }
+
+    /// <summary>Counts one attempt (e.g. only failed sign-ins).</summary>
+    public void Hit(string visitor)
+    {
+        lock (gate)
+        {
+            var now = clock.GetUtcNow();
+            foreach (var limit in Limits)
             {
+                var key = $"forms:{limit.Name}:{visitor}";
                 if (!cache.TryGetValue(key, out Window? window) || window!.Ends <= now)
                 {
                     window = new Window(now + limit.Window);
@@ -43,8 +60,6 @@ public sealed class FormThrottle(IMemoryCache cache, TimeProvider clock)
 
                 window.Count++;
             }
-
-            return true;
         }
     }
 

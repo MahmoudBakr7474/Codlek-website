@@ -7,7 +7,10 @@ namespace Codlek.Api.Site;
 /// </summary>
 public sealed class Media(IWebHostEnvironment env, IConfiguration config, IHttpContextAccessor http)
 {
-    public string UploadsRoot => Path.Combine(env.WebRootPath ?? Path.Combine(env.ContentRootPath, "wwwroot"), "uploads");
+    /// <summary>wwwroot/uploads (Codlek:UploadsRoot moves it, e.g. for the tests).</summary>
+    public string UploadsRoot => config["Codlek:UploadsRoot"] is { Length: > 0 } root
+        ? Path.GetFullPath(root, env.ContentRootPath)
+        : Path.Combine(env.WebRootPath ?? Path.Combine(env.ContentRootPath, "wwwroot"), "uploads");
 
     public string PrivateRoot => config["Codlek:PrivateStorage"] is { Length: > 0 } path
         ? Path.GetFullPath(path, env.ContentRootPath)

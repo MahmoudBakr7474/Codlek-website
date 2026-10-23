@@ -1,3 +1,4 @@
+using System.Net.Http.Json;
 using System.Text.Json.Nodes;
 using Codlek.Api.Data;
 using Codlek.Api.Mail;
@@ -31,6 +32,7 @@ public sealed class ApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
         builder.UseSetting("ConnectionStrings:Default", Connection);
         builder.UseSetting("Codlek:FormsKey", FormsKey);
         builder.UseSetting("Codlek:PrivateStorage", StorageDirectory);
+        builder.UseSetting("Codlek:UploadsRoot", Path.Combine(StorageDirectory, "uploads"));
         builder.UseSetting("Codlek:PublicUrl", "https://api.test");
         builder.UseSetting("Codlek:SiteUrl", "https://site.test");
 
@@ -65,6 +67,16 @@ public sealed class ApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
         var client = CreateClient();
         client.DefaultRequestHeaders.Add("X-Codlek-Key", FormsKey);
         client.DefaultRequestHeaders.Add("X-Client-IP", ip);
+        return client;
+    }
+
+    /// <summary>A client signed in to the dashboard (with the header every admin write carries).</summary>
+    public async Task<HttpClient> AdminAsync()
+    {
+        var client = CreateClient();
+        client.DefaultRequestHeaders.Add(Admin.AdminWriteFilter.Header, "1");
+        var login = await client.PostAsJsonAsync("/api/admin/auth/login", new { email = TestData.AdminEmail, password = TestData.AdminPassword });
+        login.EnsureSuccessStatusCode();
         return client;
     }
 

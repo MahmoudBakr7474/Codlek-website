@@ -1,3 +1,4 @@
+using Codlek.Api.Admin;
 using Codlek.Api.Data;
 using Codlek.Api.Forms;
 using Codlek.Api.Mail;
@@ -51,6 +52,13 @@ builder.Services.AddSingleton<MailQueue>();
 builder.Services.AddHostedService<MailWorker>();
 builder.Services.AddScoped<SiteMailer>();
 
+// The dashboard (admin/, served under /admin) and its API.
+builder.Services.AddAdminAuth();
+builder.Services.AddScoped<ImageStore>();
+builder.Services.AddScoped<AdminContext>();
+builder.Services.AddHttpClient(nameof(Revalidator));
+builder.Services.AddSingleton<Revalidator>();
+
 // The public site posts its forms from the visitor's browser (a CV can be larger
 // than a Vercel function accepts), so its origin may call the form endpoints.
 var siteOrigins = (builder.Configuration["Codlek:CorsOrigins"] is { Length: > 0 } origins ? origins : builder.Configuration["Codlek:SiteUrl"] ?? "")
@@ -73,12 +81,25 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-// wwwroot: /uploads/... (pictures uploaded in the admin).
+// wwwroot: /uploads/... (pictures uploaded in the admin) and /admin/ (the dashboard's build).
 app.UseStaticFiles();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapGet("/api/health", () => Results.Ok(new { status = "ok" }));
 app.MapPublicEndpoints();
 app.MapFormEndpoints();
+
+var admin = app.MapGroup("/api/admin")
+    .RequireAuthorization(AdminAuth.Policy)
+    .AddEndpointFilter<AdminWriteFilter>()
+    .WithTags("Admin");
+admin.MapAdminAuth();
+admin.MapAdminResources();
+admin.MapAdminSettings();
+
+// The dashboard is a single-page app: its routes all load admin/index.html.
+app.MapFallbackToFile("/admin/{*path:nonfile}", "admin/index.html");
 
 app.Run();
 
