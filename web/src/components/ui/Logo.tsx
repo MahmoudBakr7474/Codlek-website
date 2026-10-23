@@ -1,0 +1,58 @@
+import { cx } from '@/lib/cx';
+
+/*
+ * Logo 2c ("Modules C"): the mark plus "codlek" outlined from Manrope 800, so no
+ * font is needed. Same drawing as public/images/brand/codlek-logo.svg. Ink follows
+ * currentColor (by default --logo-ink) and the small square follows --logo-accent,
+ * so both switch with dark mode. Sizes are the mark's height: sm 28px, md 36px
+ * (header), lg 40px (footer), xl 48px; size="none" leaves the height to className.
+ */
+
+const WORD =
+    'M2017 1112q-97 0-167-44-69-43-106-118-38-75-38-169 0-95 39-170 39-75 109-118 70-43 166-43 110 0 185 56 76 56 96 153l-157 42q-14-49-49-76-34-27-78-27-50 0-81 24-32 24-47 65-16 42-16 94 0 82 37 133 36 50 107 50 54 0 81-24 28-24 42-70l161 34q-26 100-100 154-75 54-184 54m619 0q-95 0-166-43-72-42-111-117-40-74-40-171 0-98 40-172 41-75 112-117 72-42 165-42 94 0 166 43 71 42 111 117 40 74 40 171 0 98-40 172-40 75-112 117-71 42-165 42m0-148q76 0 113-51 37-51 37-132 0-83-38-133-38-50-112-50-52 0-85 23-33 23-49 64-16 42-16 96 0 84 38 134 38 49 112 49m653 148q-87 0-152-44-65-43-101-118-36-75-36-169 0-96 37-170 36-75 103-118 67-43 157-43 83 0 141 38v-229h159v835h-139v-36q-6 6-13 10-63 44-156 44m25-141q53 0 85-23 31-24 45-67 14-43 14-100 0-57-14-100-14-43-44-66-31-24-80-24-53 0-87 26-34 25-50 69-16 43-16 95 0 53 16 96 15 43 48 69 32 25 83 25m569 123h-158v-852h158v852m418 18q-96 0-169-42-74-41-115-114-42-73-42-167 0-102 41-178 41-76 112-118 71-43 164-43 99 0 168 47 69 46 102 130 33 84 23 198h-440q8 56 36 91 37 48 111 48 46 0 80-20 33-20 50-59l158 46q-36 86-112 133-76 48-167 48m-152-404h276q-7-51-26-79-31-42-100-42-81 0-118 49-22 29-32 72m680 386h-161l1-835h160v510l212-301h195l-226 313 241 313h-205l-217-301v301';
+
+export const MARK = 'M600 600H0A600 600 0 0 1 600 0zM700 0h600v600h-600zM0 700h600v600A600 600 0 0 1 0 700z';
+
+export const WORDMARK = WORD;
+
+const heights = { sm: 28, md: 36, lg: 40, xl: 48 } as const;
+const heightClasses = { sm: 'h-7', md: 'h-9', lg: 'h-10', xl: 'h-12' } as const;
+
+export function Logo({ size = 'md', className, title }: { size?: keyof typeof heights | 'none'; className?: string; title?: string }) {
+    const height = size === 'none' ? 36 : heights[size];
+    const ownColour = className?.includes('text-');
+
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 5252 1300"
+            width={Math.round(((height * 5252) / 1300) * 100) / 100}
+            height={height}
+            className={cx('block w-auto shrink-0', size !== 'none' && heightClasses[size], !ownColour && 'text-logo-ink', className)}
+            {...(title ? { role: 'img', 'aria-label': title } : { 'aria-hidden': true })}
+        >
+            <path fill="currentColor" d={`${MARK}${WORD}`} />
+            <rect x="1000" y="1000" width="300" height="300" rx="80" style={{ fill: 'var(--logo-accent, #DB551D)' }} />
+        </svg>
+    );
+}
+
+/** The mark alone, sized by className (36px without one). */
+export function LogoMark({ className, title }: { className?: string; title?: string }) {
+    const ownSize = /(^|\s)(size|h|w)-/.test(className ?? '');
+    const ownColour = className?.includes('text-');
+
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1300 1300"
+            width="36"
+            height="36"
+            className={cx('block shrink-0', !ownSize && 'size-9', !ownColour && 'text-logo-ink', className)}
+            {...(title ? { role: 'img', 'aria-label': title } : { 'aria-hidden': true })}
+        >
+            <path fill="currentColor" d={MARK} />
+            <rect x="1000" y="1000" width="300" height="300" rx="80" style={{ fill: 'var(--logo-accent, #DB551D)' }} />
+        </svg>
+    );
+}

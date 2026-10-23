@@ -68,7 +68,8 @@ public sealed record SiteDto(
     IReadOnlyList<Option> ServiceOptions,
     Appearance Appearance,
     string? OgImageUrl,
-    int YearsOfExperience);
+    int YearsOfExperience,
+    int Founded);
 
 public sealed record HomeDto(
     IReadOnlyList<string> Sections,

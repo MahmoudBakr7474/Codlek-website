@@ -9,6 +9,9 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
+// Numbers are numbers (the web default also reads "12"), so the OpenAPI types say so.
+builder.Services.ConfigureHttpJsonOptions(options =>
+    options.SerializerOptions.NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.Strict);
 builder.Services.AddProblemDetails();
 builder.Services.AddMemoryCache();
 builder.Services.AddHttpContextAccessor();
@@ -48,10 +51,22 @@ builder.Services.AddSingleton<MailQueue>();
 builder.Services.AddHostedService<MailWorker>();
 builder.Services.AddScoped<SiteMailer>();
 
+// The public site posts its forms from the visitor's browser (a CV can be larger
+// than a Vercel function accepts), so its origin may call the form endpoints.
+var siteOrigins = (builder.Configuration["Codlek:CorsOrigins"] is { Length: > 0 } origins ? origins : builder.Configuration["Codlek:SiteUrl"] ?? "")
+    .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+    .Select(origin => origin.TrimEnd('/'))
+    .ToArray();
+builder.Services.AddCors(options => options.AddPolicy(FormEndpoints.CorsPolicy, policy => policy
+    .WithOrigins(siteOrigins)
+    .WithMethods("POST")
+    .WithHeaders("Content-Type")));
+
 var app = builder.Build();
 
 app.UseExceptionHandler();
 app.UseStatusCodePages();
+app.UseCors();
 
 if (app.Environment.IsDevelopment())
 {

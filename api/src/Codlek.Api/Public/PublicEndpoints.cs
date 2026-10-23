@@ -1,5 +1,6 @@
 using Codlek.Api.Data;
 using Codlek.Api.Site;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace Codlek.Api.Public;
@@ -41,7 +42,8 @@ public static class PublicEndpoints
             [.. services, new Option("other", site.Locale == "en" ? "Other" : "أخرى")],
             site.Appearance(),
             media.Exists(ogImage) ? media.Url(ogImage) : null,
-            site.YearsOfExperience);
+            site.YearsOfExperience,
+            site.Founded);
     }
 
     private static async Task<HomeDto> Home(string locale, SiteContentLoader loader, CodlekDbContext db, PublicMap map, Media media, CancellationToken ct)
@@ -167,7 +169,7 @@ public static class PublicEndpoints
             projects.Select(p => map.Project(p, site)).ToList());
     }
 
-    private static async Task<IResult> Posts(string locale, string? page, SiteContentLoader loader, CodlekDbContext db, PublicMap map, TimeProvider clock, CancellationToken ct)
+    private static async Task<Results<Ok<PostsPageDto>, NotFound>> Posts(string locale, string? page, SiteContentLoader loader, CodlekDbContext db, PublicMap map, TimeProvider clock, CancellationToken ct)
     {
         var site = await loader.LoadAsync(locale, ct);
         var current = int.TryParse(page, out var number) && number > 1 ? number : 1;
@@ -182,23 +184,23 @@ public static class PublicEndpoints
         // ?page=99 would be an empty page that still claims to be canonical.
         if (posts.Count == 0 && current > 1)
         {
-            return Results.NotFound();
+            return TypedResults.NotFound();
         }
 
-        return Results.Ok(new PostsPageDto(
+        return TypedResults.Ok(new PostsPageDto(
             posts.Select(p => map.PostCard(p, site)).ToList(),
             current,
             Math.Max(1, (int)Math.Ceiling(total / (double)PostsPerPage)),
             total));
     }
 
-    private static async Task<IResult> Article(string locale, string slug, SiteContentLoader loader, CodlekDbContext db, PublicMap map, TimeProvider clock, CancellationToken ct)
+    private static async Task<Results<Ok<ArticleDto>, NotFound>> Article(string locale, string slug, SiteContentLoader loader, CodlekDbContext db, PublicMap map, TimeProvider clock, CancellationToken ct)
     {
         var site = await loader.LoadAsync(locale, ct);
         var post = await Published(db, clock).FirstOrDefaultAsync(p => p.Slug == slug, ct);
         if (post is null)
         {
-            return Results.NotFound();
+            return TypedResults.NotFound();
         }
 
         var related = await Published(db, clock)
@@ -207,7 +209,7 @@ public static class PublicEndpoints
             .Take(3)
             .ToListAsync(ct);
 
-        return Results.Ok(new ArticleDto(map.Post(post, site), related.Select(p => map.PostCard(p, site)).ToList()));
+        return TypedResults.Ok(new ArticleDto(map.Post(post, site), related.Select(p => map.PostCard(p, site)).ToList()));
     }
 
     private static async Task<List<JobDto>> Jobs(string locale, SiteContentLoader loader, CodlekDbContext db, PublicMap map, CancellationToken ct)

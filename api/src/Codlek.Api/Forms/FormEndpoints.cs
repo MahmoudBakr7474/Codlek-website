@@ -15,9 +15,11 @@ public sealed record ContactForm(string? Name, string? Email, string? Phone, str
 /// </summary>
 public static class FormEndpoints
 {
+    public const string CorsPolicy = "site";
+
     public static void MapFormEndpoints(this IEndpointRouteBuilder app)
     {
-        var group = app.MapGroup("/api/public/{locale:regex(^(ar|en)$)}").WithTags("Forms");
+        var group = app.MapGroup("/api/public/{locale:regex(^(ar|en)$)}").WithTags("Forms").RequireCors(CorsPolicy);
 
         group.MapPost("/contact", Contact);
         group.MapPost("/careers", Careers).DisableAntiforgery();

@@ -1,26 +1,505 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Design tokens (site redesign, October 2026), ported from the Laravel site. The
+ * site's own palette is a blue primary with teal and magenta (the three-colour
+ * brand strip), plus a navy for emphasis blocks; the logo keeps its own orange
+ * accent. Both themes use the same names, mapped to Tailwind below (`bg-surface`,
+ * `text-ink-muted`, `border-line`…). Every text pair is checked for WCAG AA.
+ *
+ * Keep these blocks unlayered: `@theme inline` re-declares the shadow names
+ * inside a cascade layer, and unlayered declarations win.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    color-scheme: light;
+
+    --bg: #F5F8FD;
+    --surface: #FFFFFF;
+    --surface-muted: #F8FAFE; /* hero stats strip, testimonial cards, tech chips */
+    --surface-sunken: #F3F7FD; /* image wells */
+    --surface-chip: #F1F5FB; /* category pills, neutral icon tiles */
+    --line: #E3EAF5;
+    --line-strong: #C9D4E5; /* outline buttons */
+    --line-input: #8592AB; /* form field borders: 3:1 against the field */
+
+    --ink: #0B1B3F;
+    --ink-soft: #33415C; /* nav links, pill text */
+    --ink-muted: #4A5878; /* paragraphs, labels */
+    --ink-subtle: #66728C; /* placeholders and meta: 4.5:1 on white */
+    --ink-quote: #1E2B48; /* testimonial quotes, a shade softer than the headings */
+
+    --primary: #0B63CE;
+    --primary-hover: #084C9E;
+    --primary-ink: #0B63CE; /* links and text on soft backgrounds */
+    --primary-soft: #EAF2FF;
+    --primary-line: #C7DCFA;
+    --on-primary: #FFFFFF;
+    --on-primary-muted: #DCEBFF; /* paragraph on the blue band */
+    --on-primary-line: #8DB9F2; /* outline button on the blue band */
+
+    /* The design's #0B7F80, a shade deeper: teal text on teal-soft reaches 4.6:1. */
+    --teal: #0A7677; /* heading highlight line, teal tiles */
+    --teal-soft: #D5F3F1;
+    --teal-bright: #0FA3A3; /* brand strip only */
+    --accent: #D6336C; /* brand strip */
+    --accent-ink: #B8215A; /* "popular" badge text, errors */
+    --accent-soft: #FDE2EC;
+    --accent-line: #F6C3D5;
+    --amber-ink: #9A5B00;
+    --amber-soft: #FFF1D6;
+    --star: #C27F00; /* rating stars: 3:1 on the testimonial cards */
+
+    --navy: #0B1B3F; /* process section, emphasis blocks */
+    --navy-card: #132757;
+    --navy-line: #22386A;
+    --navy-chip: #1C3166;
+    --navy-chip-ink: #BFD8FF;
+    --navy-muted: #B9C6E0;
+    --navy-number: #3E5891; /* decorative step numbers */
+    --navy-glow: #5FE0D6;
+
+    /* The logo keeps its own colours (logo 2c): ink and the small square. */
+    --logo-ink: #17181C;
+    --logo-accent: #DB551D;
+
+    /* Fixed colours, the same in both themes. */
+    --whatsapp: #15803D; /* white text 5:1 */
+    --whatsapp-hover: #116632;
+    --dot-red: #FF6B6B; /* the three dots of the browser-window frames */
+    --dot-amber: #FFC14D;
+    --dot-green: #3DD68C;
+
+    --shadow-xs: 0 1px 2px rgb(11 27 63 / 0.05);
+    --shadow-card: 0 2px 6px rgb(11 27 63 / 0.04);
+    --shadow-float: 0 12px 28px rgb(11 27 63 / 0.12);
+    --shadow-panel: 0 24px 50px rgb(11 27 63 / 0.08);
+    --shadow-hero: 0 30px 60px rgb(11 27 63 / 0.12);
+    --shadow-primary: 0 10px 24px rgb(11 99 206 / 0.25);
+
+    --font-body: var(--font-cairo), 'Cairo', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Dark: a deep blue night with the same roles. The navy blocks stay darker
+   than the page, and the primary keeps white text (above 4.5:1). */
+.dark {
+    color-scheme: dark;
+
+    --bg: #0A1631;
+    --surface: #0F1F40;
+    --surface-muted: #132650;
+    --surface-sunken: #0C1A38;
+    --surface-chip: #172C57;
+    --line: #22386A;
+    --line-strong: #2F4B7E;
+    --line-input: #6A80A8;
+
+    --ink: #EEF3FC;
+    --ink-soft: #C9D5EC;
+    --ink-muted: #A9B8D6;
+    --ink-subtle: #8394B5;
+    --ink-quote: #EEF3FC;
+
+    --primary: #1F6AD3;
+    --primary-hover: #185EC0;
+    --primary-ink: #82B5FF;
+    --primary-soft: rgb(76 141 255 / 0.14);
+    --primary-line: rgb(130 181 255 / 0.32);
+    --on-primary: #FFFFFF;
+    --on-primary-muted: #EEF5FF;
+    --on-primary-line: #8DB9F2;
+
+    --teal: #4FD6CB;
+    --teal-soft: rgb(95 224 214 / 0.13);
+    --teal-bright: #0FA3A3;
+    --accent: #E0477F;
+    --accent-ink: #FF8DB3;
+    --accent-soft: rgb(214 51 108 / 0.18);
+    --accent-line: rgb(255 141 179 / 0.35);
+    --amber-ink: #FFC56B;
+    /* Opaque: any see-through amber over the navy comes out slate grey. */
+    --amber-soft: #3A2F1C;
+    --star: #F2B33D;
+
+    --navy: #071027;
+    --navy-card: #0F2049;
+    --navy-line: #22386A;
+    --navy-chip: #1A3062;
+    --navy-chip-ink: #BFD8FF;
+    --navy-muted: #B9C6E0;
+    --navy-number: #4A649C;
+    --navy-glow: #5FE0D6;
+
+    --logo-ink: #F7F4F1;
+    --logo-accent: #EF764B;
+
+    --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.25);
+    --shadow-card: 0 2px 6px rgb(0 0 0 / 0.25);
+    --shadow-float: 0 12px 28px rgb(0 0 0 / 0.45);
+    --shadow-panel: 0 24px 50px rgb(0 0 0 / 0.35);
+    --shadow-hero: 0 30px 60px rgb(0 0 0 / 0.45);
+    --shadow-primary: 0 10px 24px rgb(31 106 211 / 0.35);
+}
+
+/* The floating contact button (bottom start corner) would sit on the footer's
+   last row at the end of the page: leave room under it while the button is on
+   the page. Keyboard focus scrolling also keeps clear of it. From 1400px the
+   button has its own space beside the content. */
+@media (width < 1400px) {
+    body:has(#floating-contact) [data-footer-end] {
+        padding-bottom: 6rem;
+    }
+
+    html:has(#floating-contact) {
+        scroll-padding-bottom: 5.5rem;
+    }
+}
+
+/* Client screenshots and the bundled illustrations are mostly white or light
+   grey: on dark surfaces they would be the brightest thing on the page. Dim
+   them, and show them at full brightness on hover. */
+.dark .shot {
+    filter: brightness(0.8) saturate(0.9);
+    transition: filter 0.3s var(--ease-out-soft);
+}
+
+.dark .group:hover .shot {
+    filter: none;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    --color-bg: var(--bg);
+    --color-surface: var(--surface);
+    --color-surface-muted: var(--surface-muted);
+    --color-surface-sunken: var(--surface-sunken);
+    --color-surface-chip: var(--surface-chip);
+    --color-line: var(--line);
+    --color-line-strong: var(--line-strong);
+    --color-line-input: var(--line-input);
+    --color-ink: var(--ink);
+    --color-ink-soft: var(--ink-soft);
+    --color-ink-muted: var(--ink-muted);
+    --color-ink-subtle: var(--ink-subtle);
+    --color-ink-quote: var(--ink-quote);
+    --color-primary: var(--primary);
+    --color-primary-hover: var(--primary-hover);
+    --color-primary-ink: var(--primary-ink);
+    --color-primary-soft: var(--primary-soft);
+    --color-primary-line: var(--primary-line);
+    --color-on-primary: var(--on-primary);
+    --color-on-primary-muted: var(--on-primary-muted);
+    --color-on-primary-line: var(--on-primary-line);
+    --color-teal: var(--teal);
+    --color-teal-soft: var(--teal-soft);
+    --color-teal-bright: var(--teal-bright);
+    --color-accent: var(--accent);
+    --color-accent-ink: var(--accent-ink);
+    --color-accent-soft: var(--accent-soft);
+    --color-accent-line: var(--accent-line);
+    --color-amber-ink: var(--amber-ink);
+    --color-amber-soft: var(--amber-soft);
+    --color-star: var(--star);
+    --color-navy: var(--navy);
+    --color-navy-card: var(--navy-card);
+    --color-navy-line: var(--navy-line);
+    --color-navy-chip: var(--navy-chip);
+    --color-navy-chip-ink: var(--navy-chip-ink);
+    --color-navy-muted: var(--navy-muted);
+    --color-navy-number: var(--navy-number);
+    --color-navy-glow: var(--navy-glow);
+    --color-logo-ink: var(--logo-ink);
+    --color-logo-accent: var(--logo-accent);
+    --color-whatsapp: var(--whatsapp);
+    --color-whatsapp-hover: var(--whatsapp-hover);
+    --color-dot-red: var(--dot-red);
+    --color-dot-amber: var(--dot-amber);
+    --color-dot-green: var(--dot-green);
+
+    --shadow-xs: var(--shadow-xs);
+    --shadow-card: var(--shadow-card);
+    --shadow-float: var(--shadow-float);
+    --shadow-panel: var(--shadow-panel);
+    --shadow-hero: var(--shadow-hero);
+    --shadow-primary: var(--shadow-primary);
+
+    --font-sans: var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+    /* chip: nav pills · btn: md/sm buttons, 40–44px tiles, inputs · btn-lg: lg
+       buttons, 52px tiles, tech chips · box: stats strip, small cards · card:
+       service/project/testimonial cards · panel: hero frame, "why" panel ·
+       band: the blue call-to-action band. */
+    --radius-chip: 10px;
+    --radius-btn: 12px;
+    --radius-btn-lg: 14px;
+    --radius-box: 18px;
+    --radius-card: 22px;
+    --radius-panel: 28px;
+    --radius-band: 32px;
+
+    /* Cairo needs room: body sizes read at the design's 1.7, headings get
+       enough leading for two Arabic lines. */
+    --text-xs--line-height: 1.6;
+    --text-sm--line-height: 1.7;
+    --text-base--line-height: 1.7;
+    --text-lg--line-height: 1.7;
+    --text-xl--line-height: 1.6;
+    --text-2xl--line-height: 1.45;
+    --text-3xl--line-height: 1.35;
+    --text-4xl--line-height: 1.35;
+    --text-5xl--line-height: 1.3;
+    --text-6xl--line-height: 1.25;
+
+    --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--line);
+    }
+
+    html {
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent;
+        scroll-padding-top: 6rem; /* the sticky header */
+    }
+
+    /* Smooth in-page jumps, switched on once the page and its font have loaded:
+       a smooth scroll to a #section during load would land off target. */
+    @media (prefers-reduced-motion: no-preference) {
+        html.smooth-scroll {
+            scroll-behavior: smooth;
+        }
+    }
+
+    body {
+        background-color: var(--bg);
+        color: var(--ink);
+        font-family: var(--font-body);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+    }
+
+    /* Headings inherit their colour (white inside the navy and blue blocks). */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 800;
+        text-wrap: balance;
+    }
+
+    h1,
+    h2 {
+        line-height: 1.35;
+    }
+
+    h3,
+    h4 {
+        line-height: 1.5;
+    }
+
+    [dir='ltr'] :is(h1, h2) {
+        letter-spacing: -0.01em;
+    }
+
+    /* Tracking breaks the joins of Arabic letters. */
+    [dir='rtl'] :is(h1, h2, h3, h4, h5, h6) {
+        letter-spacing: 0;
+    }
+
+    p {
+        text-wrap: pretty;
+    }
+
+    ::selection {
+        background-color: var(--primary);
+        color: var(--on-primary);
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--primary-ink);
+        outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        ::before,
+        ::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
+
+/* Layout shell: 1200px of content, 16px gutters on phones, 24px from `sm`. */
+@utility shell {
+    width: 100%;
+    max-width: calc(1200px + 2 * 24px);
+    margin-inline: auto;
+    padding-inline: 16px;
+
+    @media (width >= 40rem) {
+        padding-inline: 24px;
+    }
+}
+
+/* The design's 4px brand strip: blue / teal / magenta in three equal parts,
+   blue on the reading start side in both directions. */
+@utility brand-strip {
+    height: 4px;
+    background-image: linear-gradient(to right, var(--primary) 0 33.34%, var(--teal-bright) 33.34% 66.67%, var(--accent) 66.67% 100%);
+
+    &:where([dir='rtl'], [dir='rtl'] *) {
+        background-image: linear-gradient(to left, var(--primary) 0 33.34%, var(--teal-bright) 33.34% 66.67%, var(--accent) 66.67% 100%);
+    }
+}
+
+/* Small square icon button (toast close…). */
+@utility icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    border-radius: 12px;
+    color: var(--ink-soft);
+    transition: background-color 150ms, color 150ms;
+
+    &:hover {
+        background-color: var(--surface-chip);
+        color: var(--ink);
+    }
+}
+
+/* Long-form text (blog articles, legal pages). Colours follow the theme tokens. */
+@utility prose-codlek {
+    --tw-prose-body: var(--ink-soft);
+    --tw-prose-headings: var(--ink);
+    --tw-prose-lead: var(--ink-muted);
+    --tw-prose-links: var(--primary-ink);
+    --tw-prose-bold: var(--ink);
+    --tw-prose-counters: var(--primary-ink);
+    --tw-prose-bullets: var(--teal);
+    --tw-prose-hr: var(--line);
+    --tw-prose-quotes: var(--ink);
+    --tw-prose-quote-borders: var(--teal);
+    --tw-prose-captions: var(--ink-subtle);
+    --tw-prose-kbd: var(--ink);
+    --tw-prose-code: var(--ink);
+    --tw-prose-pre-code: var(--navy-chip-ink); /* code blocks sit on the navy */
+    --tw-prose-pre-bg: var(--navy);
+    --tw-prose-th-borders: var(--line-strong);
+    --tw-prose-td-borders: var(--line);
+    line-height: 1.9;
+
+    & :where(h2, h3, h4):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        font-weight: 800;
+    }
+
+    & :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        text-decoration-color: var(--primary-line);
+        text-decoration-thickness: 1.5px;
+        text-underline-offset: 0.25em;
+        transition: text-decoration-color 150ms;
+    }
+
+    & :where(a:hover):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        text-decoration-color: currentColor;
+    }
+
+    /* No italics in Arabic; quotes sit on a soft panel. */
+    & :where(blockquote):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        font-style: normal;
+        font-weight: 600;
+        border-start-end-radius: 12px;
+        border-end-end-radius: 12px;
+        background-color: var(--surface-muted);
+        padding-block: 0.75em;
+        padding-inline-end: 1em;
+    }
+
+    /* Arabic: no fake slant for the editor's italic button (emphasis by weight), and «» quotes. */
+    &:where([dir='rtl'], [dir='rtl'] *) :where(em):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        font-style: normal;
+        font-weight: 600;
+    }
+
+    &:where([dir='rtl'], [dir='rtl'] *) :where(blockquote):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+        quotes: '«' '»';
+    }
+
+    & :where(code):not(:where(pre code, [class~='not-prose'], [class~='not-prose'] *)) {
+        border-radius: 6px;
+        background-color: var(--surface-chip);
+        padding: 0.15em 0.4em;
+        font-weight: 600;
+    }
+
+    & :where(code):not(:where(pre code, [class~='not-prose'], [class~='not-prose'] *))::before,
+    & :where(code):not(:where(pre code, [class~='not-prose'], [class~='not-prose'] *))::after {
+        content: none;
+    }
+}
+
+/* Scroll reveal. Hidden only when JS is running (html.js), so content is never
+   lost without JavaScript. An animation, not a transition, so the element's own
+   hover transitions keep working once it has appeared. If the reveal script never
+   runs, everything shows after 3s; the script cancels that fallback by adding
+   .reveal-ready. */
+.js [data-reveal]:not(.is-visible) {
+    opacity: 0;
+    animation: reveal-fallback 0s 3s forwards;
+}
+
+.reveal-ready [data-reveal]:not(.is-visible) {
+    animation: none;
+}
+
+.js [data-reveal].is-visible {
+    animation: reveal-in 0.6s var(--ease-out-soft) var(--reveal-delay, 0ms) backwards;
+}
+
+@keyframes reveal-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+}
+
+@keyframes reveal-fallback {
+    to {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .js [data-reveal]:not(.is-visible) {
+        opacity: 1;
+    }
+
+    .js [data-reveal].is-visible {
+        animation: none;
+    }
+}
+
+@media print {
+    .js [data-reveal] {
+        opacity: 1 !important;
+        animation: none !important;
+    }
 }

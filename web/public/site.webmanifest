@@ -1,0 +1,11 @@
+{
+    "name": "Codlek",
+    "short_name": "Codlek",
+    "icons": [
+        { "src": "/images/brand/codlek-mark-192.png", "sizes": "192x192", "type": "image/png" },
+        { "src": "/images/brand/codlek-mark-512.png", "sizes": "512x512", "type": "image/png" }
+    ],
+    "theme_color": "#FFFFFF",
+    "background_color": "#F5F8FD",
+    "display": "browser"
+}
