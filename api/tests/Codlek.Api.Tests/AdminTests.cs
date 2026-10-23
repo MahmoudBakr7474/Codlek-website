@@ -3,6 +3,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using Codlek.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using SkiaSharp;
 
@@ -37,6 +38,47 @@ public class AdminTests(ApiFactory factory)
         var admin = await factory.AdminAsync();
         var me = await admin.GetFromJsonAsync<JsonElement>("/api/admin/auth/me");
         Assert.Equal("Codlek Admin", me.GetProperty("name").GetString());
+    }
+
+    [Fact]
+    public async Task An_admin_changes_their_account_and_their_other_sessions_end()
+    {
+        await factory.WithDbAsync(db =>
+        {
+            db.Users.Add(new User { Name = "Second Admin", Email = "second@codlek.test", Password = BCrypt.Net.BCrypt.HashPassword("old-password-1"), IsAdmin = true });
+            return db.SaveChangesAsync();
+        });
+
+        async Task<HttpClient> SignIn(string email, string password)
+        {
+            var client = factory.Visitor("10.9.9.9"); // its own address for the sign-in limit
+            client.DefaultRequestHeaders.Add(Admin.AdminWriteFilter.Header, "1");
+            var login = await client.PostAsJsonAsync("/api/admin/auth/login", new { email, password });
+            Assert.Equal(HttpStatusCode.OK, login.StatusCode);
+            return client;
+        }
+
+        var phone = await SignIn("second@codlek.test", "old-password-1");
+        var laptop = await SignIn("second@codlek.test", "old-password-1");
+
+        var wrongPassword = await laptop.PutAsJsonAsync("/api/admin/auth/account", new { name = "Owner", email = "owner@codlek.test", currentPassword = "nope", newPassword = "new-password-2" });
+        Assert.Equal(HttpStatusCode.UnprocessableEntity, wrongPassword.StatusCode);
+        Assert.True((await Json(wrongPassword)).GetProperty("errors").TryGetProperty("currentPassword", out _));
+
+        var tooShort = await laptop.PutAsJsonAsync("/api/admin/auth/account", new { name = "Owner", email = "owner@codlek.test", currentPassword = "old-password-1", newPassword = "short" });
+        Assert.True((await Json(tooShort)).GetProperty("errors").TryGetProperty("newPassword", out _));
+
+        var taken = await laptop.PutAsJsonAsync("/api/admin/auth/account", new { name = "Owner", email = TestData.AdminEmail, currentPassword = "old-password-1" });
+        Assert.True((await Json(taken)).GetProperty("errors").TryGetProperty("email", out _));
+
+        var saved = await laptop.PutAsJsonAsync("/api/admin/auth/account", new { name = "Owner", email = " Owner@Codlek.test ", currentPassword = "old-password-1", newPassword = "new-password-2" });
+        Assert.Equal(HttpStatusCode.OK, saved.StatusCode);
+        Assert.Equal("owner@codlek.test", (await Json(saved)).GetProperty("email").GetString());
+
+        // This session carries on with the new details; the other one is signed out.
+        Assert.Equal("Owner", (await laptop.GetFromJsonAsync<JsonElement>("/api/admin/auth/me")).GetProperty("name").GetString());
+        Assert.Equal(HttpStatusCode.Unauthorized, (await phone.GetAsync("/api/admin/auth/me")).StatusCode);
+        await SignIn("owner@codlek.test", "new-password-2");
     }
 
     [Fact]

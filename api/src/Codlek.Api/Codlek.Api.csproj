@@ -6,6 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <!-- The SDK's route handler analyzer crashes (NullReferenceException) on the generic admin endpoints. -->
     <NoWarn>$(NoWarn);AD0001</NoWarn>
+    <!-- The packages' translated error messages (cs, de, ...): the API's own messages are in its Content. -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,6 +28,22 @@
   <ItemGroup>
     <!-- Exported from the Laravel site: content defaults, lists and UI texts. -->
     <Content Update="Content\**\*.json" CopyToOutputDirectory="PreserveNewest" />
+    <!-- Uploaded pictures, CVs and sign-in keys live on the server: a publish must not carry (or overwrite) them. -->
+    <Content Update="wwwroot\uploads\**" CopyToPublishDirectory="Never" />
+    <Content Update="appsettings.Development.json;appsettings.Production.json" CopyToPublishDirectory="Never" />
+    <Content Remove="storage\**" />
+    <None Remove="storage\**" />
   </ItemGroup>
+
+  <!--
+    The server is Windows IIS: a publish leaves out the Linux and macOS native libraries, and
+    the native debug symbols (SkiaSharp's are ~100 MB per platform).
+  -->
+  <Target Name="TrimNativeAssetsFromPublish" AfterTargets="ComputeResolvedFilesToPublishList">
+    <ItemGroup>
+      <ResolvedFileToPublish Remove="@(ResolvedFileToPublish)"
+        Condition="$([System.String]::Copy('%(ResolvedFileToPublish.RelativePath)').Replace('\', '/').StartsWith('runtimes/')) And ('%(ResolvedFileToPublish.Extension)' == '.pdb' Or $([System.Text.RegularExpressions.Regex]::IsMatch('%(ResolvedFileToPublish.RelativePath)', '^runtimes[\\/](linux|osx|unix)')))" />
+    </ItemGroup>
+  </Target>
 
 </Project>

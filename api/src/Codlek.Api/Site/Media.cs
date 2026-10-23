@@ -12,9 +12,12 @@ public sealed class Media(IWebHostEnvironment env, IConfiguration config, IHttpC
         ? Path.GetFullPath(root, env.ContentRootPath)
         : Path.Combine(env.WebRootPath ?? Path.Combine(env.ContentRootPath, "wwwroot"), "uploads");
 
-    public string PrivateRoot => config["Codlek:PrivateStorage"] is { Length: > 0 } path
-        ? Path.GetFullPath(path, env.ContentRootPath)
-        : Path.Combine(env.ContentRootPath, "storage");
+    public string PrivateRoot => PrivateRootOf(config, env.ContentRootPath);
+
+    /// <summary>Codlek:PrivateStorage, or storage/ next to the app (CVs and the sign-in keys).</summary>
+    public static string PrivateRootOf(IConfiguration config, string contentRoot) => config["Codlek:PrivateStorage"] is { Length: > 0 } path
+        ? Path.GetFullPath(path, contentRoot)
+        : Path.Combine(contentRoot, "storage");
 
     /// <summary>Absolute public URL of an upload (or an http(s) URL kept as it is); null when empty.</summary>
     public string? Url(string? path)

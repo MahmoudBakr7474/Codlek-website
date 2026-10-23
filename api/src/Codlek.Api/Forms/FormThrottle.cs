@@ -98,9 +98,10 @@ public sealed class FormThrottle(IMemoryCache cache, TimeProvider clock)
 }
 
 /// <summary>
-/// The visitor's IP. The Next.js site posts the forms from its server, so it
-/// passes the visitor's address in X-Client-IP together with the shared
-/// Codlek:FormsKey; without the key the header is ignored.
+/// The visitor's IP. The site's forms post from the browser, so this is the
+/// connection's address. A server posting on a visitor's behalf can pass their
+/// address in X-Client-IP together with the shared Codlek:FormsKey; without the
+/// key the header is ignored.
 /// </summary>
 public static class ClientIp
 {

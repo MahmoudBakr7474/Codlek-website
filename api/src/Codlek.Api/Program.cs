@@ -5,6 +5,7 @@ using Codlek.Api.Mail;
 using Codlek.Api.Public;
 using Codlek.Api.Site;
 using Ganss.Xss;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 
@@ -55,6 +56,10 @@ builder.Services.AddScoped<SiteMailer>();
 
 // The dashboard (admin/, served under /admin) and its API.
 builder.Services.AddAdminAuth();
+// The sign-in cookie survives app restarts (shared hosting recycles the app often).
+builder.Services.AddDataProtection()
+    .SetApplicationName("Codlek")
+    .PersistKeysToFileSystem(new DirectoryInfo(Path.Combine(Media.PrivateRootOf(builder.Configuration, builder.Environment.ContentRootPath), "keys")));
 builder.Services.AddScoped<ImageStore>();
 builder.Services.AddScoped<AdminContext>();
 builder.Services.AddHttpClient(nameof(Revalidator));
@@ -72,6 +77,13 @@ builder.Services.AddCors(options => options.AddPolicy(FormEndpoints.CorsPolicy, 
     .WithHeaders("Content-Type")));
 
 var app = builder.Build();
+
+// Hosting without a shell: Codlek:MigrateOnStartup brings the database schema up to date when the app starts.
+if (app.Configuration.GetValue<bool>("Codlek:MigrateOnStartup"))
+{
+    using var scope = app.Services.CreateScope();
+    scope.ServiceProvider.GetRequiredService<CodlekDbContext>().Database.Migrate();
+}
 
 app.UseExceptionHandler();
 app.UseStatusCodePages();

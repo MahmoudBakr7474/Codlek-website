@@ -1,10 +1,11 @@
 import { ExportOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import { useGetIdentity, useLogout } from '@refinedev/core';
 import { Avatar, Button, Layout, Space, Typography, theme } from 'antd';
+import { Link } from 'react-router';
 import type { Identity } from '../providers/authProvider';
 import { useSiteInfo } from '../lib/siteInfo';
 
-/** The bar above every page: who is signed in, the site, sign out. */
+/** The bar above every page: who is signed in (opens their account), the site, sign out. */
 export function Header() {
     const { token } = theme.useToken();
     const { data: user } = useGetIdentity<Identity>();
@@ -33,10 +34,12 @@ export function Header() {
                         عرض الموقع
                     </Button>
                 )}
-                <Space size={8}>
-                    <Avatar icon={<UserOutlined />} style={{ background: token.colorPrimary }} />
-                    <Typography.Text strong>{user?.name}</Typography.Text>
-                </Space>
+                <Link to="/account" title="حسابي">
+                    <Space size={8}>
+                        <Avatar icon={<UserOutlined />} style={{ background: token.colorPrimary }} />
+                        <Typography.Text strong>{user?.name}</Typography.Text>
+                    </Space>
+                </Link>
                 <Button icon={<LogoutOutlined />} onClick={() => logout()}>
                     خروج
                 </Button>

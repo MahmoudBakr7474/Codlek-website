@@ -15,6 +15,7 @@ import { BrowserRouter, Outlet, Route, Routes } from 'react-router';
 import '@refinedev/antd/dist/reset.css';
 import { Header } from './components/Header';
 import { Logo } from './components/Logo';
+import { AccountPage } from './pages/account';
 import { ApplicationList, ApplicationShow } from './pages/applications';
 import { CategoryCreate, CategoryEdit, CategoryList } from './pages/categories';
 import { DashboardPage } from './pages/dashboard';
@@ -160,6 +161,7 @@ export default function App() {
                                 <Route path="/settings/seo" element={<SeoSettings />} />
                                 <Route path="/settings/mail" element={<MailSettings />} />
                                 <Route path="/settings/appearance" element={<AppearanceSettings />} />
+                                <Route path="/account" element={<AccountPage />} />
 
                                 <Route path="*" element={<ErrorComponent />} />
                             </Route>
