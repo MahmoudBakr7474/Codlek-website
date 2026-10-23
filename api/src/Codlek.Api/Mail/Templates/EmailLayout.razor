@@ -1,0 +1,61 @@
+@* Same look as the Laravel mails: system fonts (mail clients can't load web fonts),
+   the brand strip as three cells (Outlook ignores gradients), tables for layout. *@
+<!DOCTYPE html>
+<html lang="@Locale" dir="@Dir">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <title>Codlek</title>
+</head>
+<body style="margin:0;padding:0;background:#F5F8FD;font-family:@Font;color:#0B1B3F;-webkit-text-size-adjust:100%;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F5F8FD" style="background:#F5F8FD;">
+        <tr>
+            <td align="center" style="padding:32px 12px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" style="max-width:600px;background:#FFFFFF;border:1px solid #E3EAF5;border-radius:18px;border-collapse:separate;overflow:hidden;">
+                    <tr>
+                        <td style="padding:0;font-size:0;line-height:0;">
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td width="33%" height="4" bgcolor="#0B63CE" style="height:4px;background:#0B63CE;font-size:0;line-height:0;">&nbsp;</td>
+                                    <td width="34%" height="4" bgcolor="#0FA3A3" style="height:4px;background:#0FA3A3;font-size:0;line-height:0;">&nbsp;</td>
+                                    <td width="33%" height="4" bgcolor="#D6336C" style="height:4px;background:#D6336C;font-size:0;line-height:0;">&nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td dir="@Dir" style="padding:26px 32px 22px;text-align:@Align;border-bottom:1px solid #E3EAF5;">
+                            @* The PNG has a thin white outline: it keeps the logo readable when a mail app forces a dark theme. *@
+                            <a href="@Context.HomeUrl" style="display:inline-block;text-decoration:none;">
+                                <img src="@Context.LogoUrl" alt="Codlek" width="152" height="40"
+                                     style="display:block;width:152px;height:40px;border:0;outline:none;text-decoration:none;font-family:@Font;font-size:22px;font-weight:700;line-height:40px;color:#17181C;">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td dir="@Dir" style="padding:28px 32px 32px;text-align:@Align;font-family:@Font;font-size:15px;line-height:1.8;color:#0B1B3F;">
+                            @ChildContent
+                        </td>
+                    </tr>
+                </table>
+                <p style="margin:16px 0 0;font-family:@Font;font-size:12px;line-height:1.6;color:#4A5878;">
+                    Codlek · <a href="mailto:@Context.ContactEmail" style="color:#4A5878;text-decoration:none;">@Context.ContactEmail</a>
+                </p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+
+@code {
+    public const string Font = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Tahoma, 'Noto Sans Arabic', Arial, sans-serif";
+
+    [Parameter] public string Locale { get; set; } = "ar";
+    [Parameter, EditorRequired] public MailContext Context { get; set; } = default!;
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    private string Dir => Locale == "ar" ? "rtl" : "ltr";
+    private string Align => Locale == "ar" ? "right" : "left";
+}

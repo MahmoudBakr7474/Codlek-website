@@ -1,0 +1,22 @@
+{
+    "ar": {
+        "required": "حقل :attribute مطلوب.",
+        "min_string": "يجب ألا يقل عدد أحرف :attribute عن :min.",
+        "max_string": "يجب ألا يزيد عدد أحرف :attribute عن :max.",
+        "email": "يجب أن يكون :attribute بريداً إلكترونياً صالحاً.",
+        "url": "يجب أن يكون :attribute رابطاً صالحاً.",
+        "regex": "صيغة :attribute غير صالحة.",
+        "in": "القيمة المختارة لـ :attribute غير صالحة.",
+        "string": "يجب أن يكون :attribute نصاً."
+    },
+    "en": {
+        "required": "The :attribute field is required.",
+        "min_string": "The :attribute field must be at least :min characters.",
+        "max_string": "The :attribute field must not be greater than :max characters.",
+        "email": "The :attribute field must be a valid email address.",
+        "url": "The :attribute field must be a valid URL.",
+        "regex": "The :attribute field format is invalid.",
+        "in": "The selected :attribute is invalid.",
+        "string": "The :attribute field must be a string."
+    }
+}

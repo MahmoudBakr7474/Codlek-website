@@ -1,0 +1,26 @@
+@* Sent to the company, always in Arabic. "Reply" goes straight to the visitor. *@
+<EmailLayout Locale="ar" Context="Context">
+    <h1 style="margin:0 0 20px;font-size:21px;line-height:1.45;color:#0B1B3F;">رسالة جديدة من نموذج التواصل</h1>
+
+    <DetailsCard Rows="Rows" />
+
+    <h2 style="margin:28px 0 10px;font-size:16px;line-height:1.5;color:#0B1B3F;">تفاصيل المشروع</h2>
+    <MessageBox Text="@Message.Message" />
+
+    <p style="margin:24px 0 0;font-size:13px;line-height:1.7;color:#4A5878;">يمكنك الرد مباشرة على هذا البريد للتواصل مع العميل. الرسالة محفوظة أيضاً في لوحة التحكم.</p>
+</EmailLayout>
+
+@code {
+    [Parameter, EditorRequired] public MailContext Context { get; set; } = default!;
+    [Parameter, EditorRequired] public ContactMessage Message { get; set; } = default!;
+    [Parameter, EditorRequired] public string ServiceLabel { get; set; } = "";
+
+    private IReadOnlyList<DetailsCard.Row> Rows =>
+    [
+        new("الاسم", Message.Name),
+        new("البريد الإلكتروني", Message.Email, $"mailto:{Message.Email}"),
+        new("الهاتف", Message.Phone, $"tel:{MailContext.Dialable(Message.Phone)}"),
+        new("الخدمة", ServiceLabel),
+        new("لغة الموقع", Message.Locale == "en" ? "English" : "العربية"),
+    ];
+}

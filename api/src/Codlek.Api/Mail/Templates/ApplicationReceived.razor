@@ -1,0 +1,42 @@
+@* Sent to the company, always in Arabic, with the CV attached. *@
+<EmailLayout Locale="ar" Context="Context">
+    <h1 style="margin:0 0 20px;font-size:21px;line-height:1.45;color:#0B1B3F;">طلب توظيف جديد</h1>
+
+    <DetailsCard Rows="Rows" />
+
+    @if (!string.IsNullOrWhiteSpace(Application.Message))
+    {
+        <h2 style="margin:28px 0 10px;font-size:16px;line-height:1.5;color:#0B1B3F;">رسالة المتقدم</h2>
+        <MessageBox Text="@Application.Message" />
+    }
+
+    <p style="margin:24px 0 0;font-size:13px;line-height:1.7;color:#4A5878;">الطلب محفوظ في لوحة التحكم ضمن «طلبات التوظيف».</p>
+</EmailLayout>
+
+@code {
+    [Parameter, EditorRequired] public MailContext Context { get; set; } = default!;
+    [Parameter, EditorRequired] public JobApplication Application { get; set; } = default!;
+    [Parameter, EditorRequired] public string JobTitle { get; set; } = "";
+
+    private IReadOnlyList<DetailsCard.Row> Rows
+    {
+        get
+        {
+            var rows = new List<DetailsCard.Row>
+            {
+                new("الوظيفة", JobTitle),
+                new("الاسم", Application.Name),
+                new("البريد الإلكتروني", Application.Email, $"mailto:{Application.Email}"),
+                new("الهاتف", Application.Phone, $"tel:{MailContext.Dialable(Application.Phone)}"),
+            };
+
+            if (!string.IsNullOrWhiteSpace(Application.ProfileUrl))
+            {
+                rows.Add(new("الملف الشخصي", Application.ProfileUrl, Application.ProfileUrl));
+            }
+
+            rows.Add(new("السيرة الذاتية", Application.CvPath is null ? "لم تُرفق" : "مرفقة بهذا البريد"));
+            return rows;
+        }
+    }
+}

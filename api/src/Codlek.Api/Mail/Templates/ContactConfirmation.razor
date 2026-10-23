@@ -1,0 +1,27 @@
+@* Short receipt for the visitor, in the site's language. It repeats nothing the
+   visitor typed, so the form can't be used to send spam to others. *@
+<EmailLayout Locale="@Locale" Context="Context">
+    @if (Locale == "en")
+    {
+        <h1 style="@Heading">Thanks for contacting Codlek</h1>
+        <p style="@Paragraph">We have received your message and a member of our team will get back to you as soon as possible.</p>
+        <p style="@Paragraph">If your request is urgent, you can also reach us on WhatsApp: <a href="https://wa.me/@Context.Whatsapp" style="@Link">@Context.Phone</a></p>
+        <p style="margin:24px 0 0;color:#0B1B3F;">Best regards,<br>The Codlek team</p>
+    }
+    else
+    {
+        <h1 style="@Heading">شكراً لتواصلك مع كودلك</h1>
+        <p style="@Paragraph">استلمنا رسالتك وسيتواصل معك أحد أفراد فريقنا في أقرب وقت ممكن.</p>
+        <p style="@Paragraph">إذا كان طلبك عاجلاً يمكنك مراسلتنا على واتساب: <a href="https://wa.me/@Context.Whatsapp" style="@Link" dir="ltr">@Context.Phone</a></p>
+        <p style="margin:24px 0 0;color:#0B1B3F;">مع أطيب التحيات،<br>فريق كودلك</p>
+    }
+</EmailLayout>
+
+@code {
+    private const string Heading = "margin:0 0 14px;font-size:21px;line-height:1.45;color:#0B1B3F;";
+    private const string Paragraph = "margin:0 0 12px;color:#0B1B3F;";
+    private const string Link = "color:#0B63CE;font-weight:700;";
+
+    [Parameter, EditorRequired] public MailContext Context { get; set; } = default!;
+    [Parameter] public string Locale { get; set; } = "ar";
+}
