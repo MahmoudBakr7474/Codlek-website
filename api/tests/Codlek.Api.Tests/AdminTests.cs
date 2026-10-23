@@ -259,6 +259,11 @@ public class AdminTests(ApiFactory factory)
         using var stored = SKBitmap.Decode(Path.Combine(factory.StorageDirectory, "uploads", path));
         Assert.Equal(1600, stored.Width);
         Assert.Equal(1200, stored.Height);   // a full-page capture keeps its top, 0.75 of the width
+
+        // Served at /uploads/... from the moved uploads folder.
+        var served = await factory.CreateClient().GetAsync($"/uploads/{path}");
+        Assert.Equal(HttpStatusCode.OK, served.StatusCode);
+        Assert.Equal("image/webp", served.Content.Headers.ContentType?.MediaType);
     }
 
     [Fact]

@@ -39,3 +39,6 @@ api/src/Codlek.Api/storage/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# The dashboard's build (vite builds it into the API's wwwroot)
+api/src/Codlek.Api/wwwroot/admin/

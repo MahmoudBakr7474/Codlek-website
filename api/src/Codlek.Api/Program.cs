@@ -6,6 +6,7 @@ using Codlek.Api.Public;
 using Codlek.Api.Site;
 using Ganss.Xss;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -83,6 +84,16 @@ if (app.Environment.IsDevelopment())
 
 // wwwroot: /uploads/... (pictures uploaded in the admin) and /admin/ (the dashboard's build).
 app.UseStaticFiles();
+
+// Codlek:UploadsRoot keeps the pictures in a folder outside the site, where a redeploy can't delete them.
+if (app.Configuration["Codlek:UploadsRoot"] is { Length: > 0 })
+{
+    using var scope = app.Services.CreateScope();
+    var uploads = scope.ServiceProvider.GetRequiredService<Media>().UploadsRoot;
+    Directory.CreateDirectory(uploads);
+    app.UseStaticFiles(new StaticFileOptions { FileProvider = new PhysicalFileProvider(uploads), RequestPath = "/uploads" });
+}
+
 app.UseAuthentication();
 app.UseAuthorization();
 

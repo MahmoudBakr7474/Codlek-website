@@ -11,11 +11,17 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.6.1",
+    "@fontsource-variable/cairo": "^5.3.0",
     "@refinedev/antd": "^6.0.3",
     "@refinedev/core": "^5.0.12",
     "@refinedev/react-router": "^2.0.4",
+    "@tiptap/extension-image": "^3.32.0",
+    "@tiptap/pm": "^3.32.0",
+    "@tiptap/react": "^3.32.0",
+    "@tiptap/starter-kit": "^3.32.0",
     "antd": "^5.29.3",
     "dayjs": "^1.11.23",
+    "lucide-react": "^1.61.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-router": "^7.18.4"
