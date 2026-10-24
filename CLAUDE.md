@@ -55,6 +55,12 @@ Rewrite of the Codlek company site from Laravel. The plan, decisions and phase s
   persist in `storage/keys`. Every admin write carries `X-Codlek-Admin: 1` and pings the site's revalidate hook.
 - Unknown articles and blog pages past the last get their 404 in `web/src/proxy.ts`: the pages stream, so a
   `notFound()` inside them can only add `noindex` to a 200.
+- Sentry (org `codlek`, EU): projects `codlek-api` (`Site/SentrySetup.cs`, DSN from `Sentry__Dsn`), `codlek-web`
+  (`web/src/instrumentation*.ts`, `NEXT_PUBLIC_SENTRY_DSN` on Vercel, tunnel `/monitoring` kept out of `proxy.ts`)
+  and `codlek-admin` (`admin/src/main.tsx`, `VITE_SENTRY_DSN` in the gitignored `admin/.env.production.local`,
+  reports tunnelled through the API's `/api/monitoring`). No DSN = Sentry off. Never send personal data: no
+  bodies, query strings, cookies, IPs or identifying headers (the forms and dashboard carry names, phones, CVs).
+  Don't log personal data either: log lines become Sentry breadcrumbs.
 
 ## Git
 - This repo is **public** (`github.com/MahmoudBakr7474/Codlek-website`): no secrets, connection strings with

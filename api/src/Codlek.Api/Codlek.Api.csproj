@@ -21,6 +21,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.13" />
+    <PackageReference Include="Sentry.AspNetCore" Version="6.12.1" />
     <PackageReference Include="SkiaSharp" Version="4.153.1" />
     <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
   </ItemGroup>
@@ -41,8 +42,7 @@
   -->
   <Target Name="TrimNativeAssetsFromPublish" AfterTargets="ComputeResolvedFilesToPublishList">
     <ItemGroup>
-      <ResolvedFileToPublish Remove="@(ResolvedFileToPublish)"
-        Condition="$([System.String]::Copy('%(ResolvedFileToPublish.RelativePath)').Replace('\', '/').StartsWith('runtimes/')) And ('%(ResolvedFileToPublish.Extension)' == '.pdb' Or $([System.Text.RegularExpressions.Regex]::IsMatch('%(ResolvedFileToPublish.RelativePath)', '^runtimes[\\/](linux|osx|unix)')))" />
+      <ResolvedFileToPublish Remove="@(ResolvedFileToPublish)" Condition="$([System.String]::Copy('%(ResolvedFileToPublish.RelativePath)').Replace('\', '/').StartsWith('runtimes/')) And ('%(ResolvedFileToPublish.Extension)' == '.pdb' Or $([System.Text.RegularExpressions.Regex]::IsMatch('%(ResolvedFileToPublish.RelativePath)', '^runtimes[\\/](linux|osx|unix)')))" />
     </ItemGroup>
   </Target>
 

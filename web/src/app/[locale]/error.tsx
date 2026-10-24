@@ -1,6 +1,8 @@
 'use client';
 
+import * as Sentry from '@sentry/nextjs';
 import { useParams } from 'next/navigation';
+import { useEffect } from 'react';
 import { House, RotateCcw, ServerCrash } from 'lucide-react';
 import { Button, ButtonLink } from '@/components/ui/Button';
 import { IconTile } from '@/components/ui/IconTile';
@@ -26,10 +28,17 @@ const texts = {
     },
 };
 
-export default function PageError({ reset }: { error: Error; reset: () => void }) {
+export default function PageError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
     const params = useParams<{ locale: string }>();
     const locale = isLocale(params.locale) ? params.locale : 'ar';
     const t = texts[locale];
+
+    // A server error (it carries a digest) is already reported by instrumentation.ts.
+    useEffect(() => {
+        if (!error.digest) {
+            Sentry.captureException(error);
+        }
+    }, [error]);
 
     return (
         <section className="py-16 sm:py-24">

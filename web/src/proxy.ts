@@ -107,6 +107,6 @@ function safeDecode(value: string): string {
 }
 
 export const config = {
-    // Pages only: not Next's own files, the revalidation hook, metadata routes or files in public/.
-    matcher: ['/((?!_next|api|sitemap\\.xml|robots\\.txt|favicon\\.ico|site\\.webmanifest|images/).*)'],
+    // Pages only: not Next's own files, the revalidation hook, Sentry's tunnel, metadata routes or files in public/.
+    matcher: ['/((?!_next|api|monitoring|sitemap\\.xml|robots\\.txt|favicon\\.ico|site\\.webmanifest|images/).*)'],
 };

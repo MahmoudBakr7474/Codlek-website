@@ -11,6 +11,9 @@ using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Errors and slow requests go to Sentry, without personal data (SentrySetup).
+builder.WebHost.UseSentry(SentrySetup.Configure);
+
 builder.Services.AddOpenApi();
 // Numbers are numbers (the web default also reads "12"), so the OpenAPI types say so.
 builder.Services.ConfigureHttpJsonOptions(options =>
@@ -110,6 +113,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapGet("/api/health", () => Results.Ok(new { status = "ok" }));
+app.MapSentryTunnel();
 app.MapPublicEndpoints();
 app.MapFormEndpoints();
 

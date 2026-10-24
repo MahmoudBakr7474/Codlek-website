@@ -82,6 +82,7 @@ Control Panel ← Websites ← موقعك ← **Scripting** ← **Environment va
 | `Mail__FromName` | `Codlek` | |
 | `Mail__ResendApiKey` | `re_...` | لو `Mail__Driver=resend` |
 | `Mail__Smtp__Host` / `__Port` / `__Username` / `__Password` | بيانات الـ SMTP | لو `Mail__Driver=smtp` (الخطة المجانية مفيهاش إيميلات، فـ Resend أضمن لأنه بيبعت على HTTPS) |
+| `Sentry__Dsn` | DSN مشروع `codlek-api` | من Sentry: المشروع ← Settings ← Client Keys. من غيره Sentry بيقفل، والتطبيق شغال عادي. ولوحة التحكم كمان بتبعت أخطاءها عن طريق الـ API (`/api/monitoring`)، فمن غيره أخطاء اللوحة مش هتوصل. لو القيمة مكتوبة غلط، Sentry بيقفل والتطبيق بيكمل |
 
 كلمة سر عشوائية للـ revalidate (PowerShell):
 ```powershell
@@ -127,6 +128,10 @@ $b = New-Object byte[] 32; [Security.Cryptography.RandomNumberGenerator]::Create
 | `NEXT_PUBLIC_API_URL` | `https://<api-host>` |
 | `NEXT_PUBLIC_SITE_URL` | `https://<الدومين>` |
 | `REVALIDATE_SECRET` | نفس `Codlek__RevalidateSecret` |
+| `NEXT_PUBLIC_SENTRY_DSN` | DSN مشروع `codlek-web` (نوع Config، مش سري). من غيره Sentry مقفول على الموقع |
+| `SENTRY_AUTH_TOKEN` | اختياري، نوع **Secret**: Organization Token من Sentry (Settings ← Auth Tokens). بيرفع الـ source maps وقت الـ build، فالأخطاء بتظهر بأسماء الملفات والسطور الحقيقية |
+
+أي تغيير في المتغيرات دي محتاج **Redeploy**، لأن الموقع بيقراها وقت الـ build.
 
 5. **Deploy.** الـ build بيقرا المحتوى من الـ API، فلو فشل اتأكد إن `https://<api-host>/api/health` شغال.
 6. الدومين: Settings ← Domains ← ضيف الدومين واعمل الـ DNS records اللي Vercel بيقولها.
@@ -168,6 +173,7 @@ $b = New-Object byte[] 32; [Security.Cryptography.RandomNumberGenerator]::Create
   - عايز تشوف هيتغير إيه من غير ما تغيّر حاجة؟ زوّد `-DryRun`.
   - لو فيه migration جديدة، `Codlek__MigrateOnStartup` بيطبقها مع أول تشغيل.
 - **تعديل في الاتنين** (مثلاً endpoint جديد الموقع بيستخدمه): ارفع الـ API الأول، وبعدين الموقع.
+- **Sentry في لوحة التحكم:** الـ build بتاع اللوحة بيقرا الـ DSN من `admin/.env.production.local` على الجهاز اللي بيرفع (مش في git، وفيه `admin/.env.example` كنموذج). لو الملف مش موجود، اللوحة بتترفع وSentry مقفول فيها. ولو حطيت `SENTRY_AUTH_TOKEN` في الترمينال قبل أمر الرفع، الـ build بيرفع الـ source maps لـ Sentry.
 
 ---
 
@@ -181,3 +187,5 @@ $b = New-Object byte[] 32; [Security.Cryptography.RandomNumberGenerator]::Create
 | اللوحة بتعمل خروج لوحدها كتير | فولدر `storage/keys` مش بيتكتب فيه (صلاحيات). |
 | الإيميلات مش بتوصل | راجع `Mail__Driver` والمفتاح. الرسايل بتتحفظ في اللوحة في كل الأحوال. |
 | «محاولات كتير» بتظهر لزوار كتير مع بعض | معناها إن MonsterASP شغال ورا proxy وكل الزوار طالعين بنفس الـ IP. ابعتلي وأظبط قراءة الـ IP. |
+| مفيش أخطاء بتوصل Sentry | الـ API: `Sentry__Dsn` على MonsterASP، وبعدها Restart. الموقع: `NEXT_PUBLIC_SENTRY_DSN` على Vercel، وبعدها Redeploy. اللوحة: `admin/.env.production.local` على الجهاز اللي بيرفع، **و** `Sentry__Dsn` على الـ API (أخطاء اللوحة بتعدي عليه). |
+| الأخطاء في Sentry بتظهر بأسماء ملفات زي `chunks/_1x...js` | الـ source maps مش مرفوعة: حط `SENTRY_AUTH_TOKEN` (Vercel للموقع، والترمينال وقت الرفع للوحة). |

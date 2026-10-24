@@ -57,7 +57,8 @@ public sealed class LogMailSender(MailOptions options, IWebHostEnvironment env, 
                      $"Attachments: {string.Join(", ", mail.Attachments?.Select(a => a.FileName) ?? [])}\n-->\n";
         await File.WriteAllTextAsync(file, header + mail.Html, ct);
 
-        logger.LogInformation("Mail to {To} written to {File}", string.Join(", ", mail.To), file);
+        // No addresses in the log: log lines become Sentry breadcrumbs.
+        logger.LogInformation("Mail \"{Subject}\" to {Count} recipient(s) written to {File}", mail.Subject, mail.To.Count, file);
     }
 }
 
