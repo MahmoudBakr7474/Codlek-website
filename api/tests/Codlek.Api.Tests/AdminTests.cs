@@ -222,7 +222,7 @@ public class AdminTests(ApiFactory factory)
         Assert.Equal(9, values.GetProperty("home.sections").GetArrayLength());
         Assert.False(values.GetProperty("home.sections")[0].GetProperty("visible").GetBoolean());
         Assert.Equal("image", values.GetProperty("home.hero_visual").GetString());
-        Assert.Equal("#0FA3A3", values.GetProperty("home.technologies")[0].GetProperty("color").GetString());
+        Assert.Equal("#7AB55C", values.GetProperty("home.technologies")[0].GetProperty("color").GetString());
 
         var reset = await admin.PostAsJsonAsync("/api/admin/settings/reset", new { keys = new[] { "home.sections", "home.hero_visual", "home.technologies" } });
         Assert.Equal(HttpStatusCode.NoContent, reset.StatusCode);

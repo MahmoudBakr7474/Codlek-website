@@ -90,7 +90,7 @@ public class SettingsTests(ApiFactory factory)
         var home = await client.GetFromJsonAsync<HomeDto>("/api/public/en/home");
 
         Assert.Equal(2, home!.Technologies.Count);
-        Assert.Equal("#0FA3A3", home.Technologies[0].Color);   // the design's Shopify colour
+        Assert.Equal("#7AB55C", home.Technologies[0].Color);   // Shopify's default colour
         Assert.Equal("#AABBCC", home.Technologies[1].Color);
     }
 

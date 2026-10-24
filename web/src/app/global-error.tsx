@@ -18,7 +18,7 @@ export default function GlobalError({ error }: { error: Error & { digest?: strin
 
     return (
         <html lang="ar" dir="rtl">
-            <body style={{ margin: 0, padding: '4rem 1rem', textAlign: 'center', fontFamily: 'system-ui, sans-serif' }}>
+            <body style={{ margin: 0, padding: '4rem 1rem', textAlign: 'center', fontFamily: 'Cairo, system-ui, sans-serif' }}>
                 <h1>حدث خطأ غير متوقع</h1>
                 <p>حاول مرة أخرى بعد قليل.</p>
                 <p dir="ltr">Something went wrong. Please try again in a moment.</p>

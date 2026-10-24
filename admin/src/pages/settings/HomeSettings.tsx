@@ -74,7 +74,7 @@ const HEADINGS: Array<{ key: string; description: string; fields: Record<string,
             'home.why.years_text': 'السطر تحت عنوان سنين الخبرة',
         },
     },
-    { key: 'technologies', description: 'أسامي الأدوات وألوانها في تبويب «التقنيات».', fields: { 'home.tech.title': title, 'home.tech.lead': lead } },
+    { key: 'technologies', description: 'أسامي الأدوات في تبويب «التقنيات»، وكل أداة معروفة بتظهر بلوجو بتاعها.', fields: { 'home.tech.title': title, 'home.tech.lead': lead } },
     { key: 'industries', description: 'الكروت نفسها في تبويب «القطاعات».', fields: { 'home.industries.eyebrow': eyebrow, 'home.industries.title': title, 'home.industries.lead': lead } },
     {
         key: 'journey',
@@ -311,10 +311,10 @@ function TechnologiesEditor() {
                     <Col xs={24} md={10}>
                         <Form.Item
                             name={[field.name, 'color']}
-                            label="لون النقطة"
+                            label="اللون"
                             rules={required}
                             getValueFromEvent={(color: Color) => color.toHexString().toUpperCase()}
-                            extra={<Hint text="اختار من المربع أو الصق كود اللون، مثلاً #0B63CE." />}
+                            extra={<Hint text="الأدوات المعروفة زي React و.NET وFlutter وWordPress بتظهر بلوجو الشركة وألوانه. اللون ده بيظهر بس مع اسم ملوش لوجو عندنا. اختار من المربع أو الصق كود اللون، مثلاً #0B63CE." />}
                         >
                             <ColorPicker showText format="hex" disabledAlpha />
                         </Form.Item>

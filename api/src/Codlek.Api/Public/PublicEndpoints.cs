@@ -33,9 +33,11 @@ public static class PublicEndpoints
         var services = await ServiceLabels(db, site, ct);
         var ogImage = site.OgImagePath();
 
+        // {years}, {email} and {phone} are filled here, not in site.Texts: the admin's
+        // text editor reads those and must keep the tokens.
         return new SiteDto(
             site.Locale,
-            site.Texts,
+            site.Texts.ToDictionary(text => text.Key, text => site.Fill(text.Value)),
             site.Contact,
             site.Socials(),
             services,

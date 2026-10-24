@@ -122,68 +122,104 @@
     },
     "home.technologies": [
         {
-            "name": "WordPress",
-            "color": "#0B63CE"
-        },
-        {
-            "name": "WooCommerce",
-            "color": "#7F54B3"
-        },
-        {
-            "name": "Shopify",
-            "color": "#0FA3A3"
-        },
-        {
             "name": "React",
-            "color": "#38BDF8"
+            "color": "#61DAFB"
         },
         {
-            "name": "PHP",
-            "color": "#6D78B5"
+            "name": "Next.js",
+            "color": "#000000"
         },
         {
-            "name": "Laravel",
-            "color": "#D6336C"
+            "name": "TypeScript",
+            "color": "#3178C6"
         },
         {
             "name": "Node.js",
-            "color": "#3C9A3C"
+            "color": "#5FA04E"
         },
         {
-            "name": "MySQL",
-            "color": "#0B7F80"
+            "name": ".NET",
+            "color": "#512BD4"
+        },
+        {
+            "name": "PHP",
+            "color": "#777BB4"
+        },
+        {
+            "name": "Laravel",
+            "color": "#FF2D20"
+        },
+        {
+            "name": "Flutter",
+            "color": "#02569B"
+        },
+        {
+            "name": "React Native",
+            "color": "#61DAFB"
+        },
+        {
+            "name": "Swift",
+            "color": "#F05138"
+        },
+        {
+            "name": "Kotlin",
+            "color": "#7F52FF"
+        },
+        {
+            "name": "WordPress",
+            "color": "#21759B"
+        },
+        {
+            "name": "WooCommerce",
+            "color": "#96588A"
+        },
+        {
+            "name": "Shopify",
+            "color": "#7AB55C"
         },
         {
             "name": "Elementor",
-            "color": "#B8215A"
+            "color": "#92003B"
         },
         {
-            "name": "Figma",
-            "color": "#F5A524"
+            "name": "MySQL",
+            "color": "#4479A1"
         },
         {
-            "name": "Google Ads",
-            "color": "#0B63CE"
+            "name": "SQL Server",
+            "color": "#CC2927"
         },
         {
-            "name": "Meta Ads",
-            "color": "#2F86F0"
-        },
-        {
-            "name": "Search Console",
-            "color": "#0FA3A3"
-        },
-        {
-            "name": "Google Analytics",
-            "color": "#F5A524"
-        },
-        {
-            "name": "Cloudflare",
-            "color": "#E87722"
+            "name": "Firebase",
+            "color": "#DD2C00"
         },
         {
             "name": "AWS",
-            "color": "#0B1B3F"
+            "color": "#FF9900"
+        },
+        {
+            "name": "Cloudflare",
+            "color": "#F38020"
+        },
+        {
+            "name": "Figma",
+            "color": "#F24E1E"
+        },
+        {
+            "name": "Google Ads",
+            "color": "#4285F4"
+        },
+        {
+            "name": "Meta Ads",
+            "color": "#0467DF"
+        },
+        {
+            "name": "Search Console",
+            "color": "#458CF5"
+        },
+        {
+            "name": "Google Analytics",
+            "color": "#E37400"
         }
     ],
     "home.industries": [
