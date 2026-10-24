@@ -157,8 +157,17 @@ $b = New-Object byte[] 32; [Security.Cryptography.RandomNumberGenerator]::Create
 ## 6. التحديثات بعد كده
 
 - **محتوى:** من اللوحة. مفيش رفع.
-- **الموقع:** push على GitHub، و Vercel بيعمل build لوحده.
-- **الـ API أو اللوحة:** شغّل السكريبت تاني **من غير** `-WithUploads`، وارفع `out\api` (من غير ما تمسح `wwwroot/uploads` و `storage/` من السيرفر). لو فيه migration جديدة، `Codlek__MigrateOnStartup` بيطبقها مع أول تشغيل.
+- **الموقع (`web/`):** push على فرع `main` في الريبو المتوصل بمشروع Vercel، و Vercel بيعمل build ويرفع لوحده.
+- **الـ API أو اللوحة (`api/` أو `admin/`):** أمر واحد:
+  ```bash
+  powershell -ExecutionPolicy Bypass -File deploy/publish-api.ps1 -Deploy
+  ```
+  - بيعمل build للوحة و publish للـ API، وبيرفع على MonsterASP بـ WebDeploy **الملفات اللي اتغيرت بس** (بيقارن المحتوى)، والموقع بيقفل ثواني وقت النسخ وبعدين بيتأكد إن `/api/health` شغال.
+  - مش بيلمس أبداً: الصور (`wwwroot/uploads`)، والـ CVs ومفاتيح الدخول (`storage`)، وشهادة HTTPS (`.well-known`)، والـ logs، و `appsettings.Production.json`.
+  - محتاج ملف الـ publish profile: من موقعك في MonsterASP ← Deploy ← WebDeploy ← **Download publish profile**. حطه في الفولدر اللي فيه الريبو (`D:\Codlek\`)، **مش جوه الريبو**: فيه كلمة سر WebDeploy. ولو في مكان تاني: `-PublishProfile <المسار>`.
+  - عايز تشوف هيتغير إيه من غير ما تغيّر حاجة؟ زوّد `-DryRun`.
+  - لو فيه migration جديدة، `Codlek__MigrateOnStartup` بيطبقها مع أول تشغيل.
+- **تعديل في الاتنين** (مثلاً endpoint جديد الموقع بيستخدمه): ارفع الـ API الأول، وبعدين الموقع.
 
 ---
 

@@ -42,7 +42,7 @@ cd admin && npm run lint
 ## الرفع
 
 ```bash
-powershell -ExecutionPolicy Bypass -File deploy/publish-api.ps1 -Zip
+powershell -ExecutionPolicy Bypass -File deploy/publish-api.ps1 -Deploy
 ```
 
-بيعمل build للوحة، و publish للـ API، والناتج بيبقى في `out/api`. الباقي في [docs/DEPLOY.md](docs/DEPLOY.md).
+بيعمل build للوحة، و publish للـ API، ويرفع اللي اتغير على MonsterASP بـ WebDeploy. الموقع بيترفع لوحده مع أي push. الباقي في [docs/DEPLOY.md](docs/DEPLOY.md).

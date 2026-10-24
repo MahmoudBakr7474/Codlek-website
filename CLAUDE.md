@@ -30,7 +30,10 @@ Rewrite of the Codlek company site from Laravel. The plan, decisions and phase s
   killing the process that listens on it (3000 / 5080), or the next start fails with EADDRINUSE.
 - Tests: `cd api && dotnet test Codlek.slnx` (stop the API first: the build can't replace a running dll).
 - Dashboard: `cd admin && npm run build` builds it into `api/src/Codlek.Api/wwwroot/admin` (gitignored).
-- Publish for MonsterASP: `deploy/publish-api.ps1` → `out/api`. Deploy steps: `docs/DEPLOY.md`.
+- Publish for MonsterASP: `deploy/publish-api.ps1` → `out/api`; with `-Deploy` it uploads the changed files over
+  WebDeploy (`-DryRun` to preview), using the `.publishSettings` file in `D:\Codlek\` (outside the repo: it holds
+  the WebDeploy password). Live: API https://codlek.tryasp.net, site https://codlekwebsite.vercel.app.
+  Deploy steps: `docs/DEPLOY.md`.
 - Migrations: `cd api && dotnet ef migrations add <Name> -p src/Codlek.Api -o Data/Migrations`, then
   `dotnet ef database update -p src/Codlek.Api` (`dotnet-ef` is a local tool: `dotnet tool restore`).
 - Re-export content from Laravel: `php api/tools/laravel-export/export.php D:/Codlek/codlek-laravel api/src/Codlek.Api/Content`

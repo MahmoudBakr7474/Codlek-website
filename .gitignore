@@ -25,6 +25,8 @@ coverage/
 !.env.example
 appsettings.*.local.json
 appsettings.Production.json
+*.publishSettings
+*.pubxml.user
 *.pfx
 
 # Data that never goes into git
