@@ -11,13 +11,13 @@ import { cx } from '@/lib/cx';
 export function controlClasses(invalid: boolean): string {
     return cx(
         'block w-full rounded-btn border bg-surface px-4 text-base text-ink shadow-xs transition-[border-color,box-shadow] duration-150 placeholder:text-ink-subtle focus:ring-4 focus:outline-none disabled:cursor-not-allowed disabled:opacity-60 sm:text-[15px]',
-        invalid ? 'border-accent-ink focus:border-accent-ink focus:ring-accent/20' : 'border-line-input hover:border-ink-muted focus:border-primary-ink focus:ring-primary-ink/25',
+        invalid ? 'border-danger focus:border-danger focus:ring-danger/20' : 'border-line-input hover:border-ink-muted focus:border-primary-ink focus:ring-primary-ink/25',
     );
 }
 
 export function FieldError({ id, children }: { id: string; children: React.ReactNode }) {
     return (
-        <p id={id} className="mt-2 flex items-center gap-1.5 text-sm font-semibold text-accent-ink">
+        <p id={id} className="mt-2 flex items-center gap-1.5 text-sm font-semibold text-danger">
             <CircleAlert className="size-4 shrink-0" aria-hidden="true" />
             {children}
         </p>
@@ -51,7 +51,7 @@ export function Field({ name, label, type = 'text', required, placeholder, hint,
             <label htmlFor={id} className="mb-2 flex items-center gap-1 text-sm font-semibold text-ink">
                 {label}
                 {required && (
-                    <span className="text-accent-ink" aria-hidden="true">
+                    <span className="text-danger" aria-hidden="true">
                         *
                     </span>
                 )}

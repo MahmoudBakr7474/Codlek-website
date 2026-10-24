@@ -5,7 +5,7 @@ import { cx } from '@/lib/cx';
 import { SectionHeader } from '../ui/SectionHeader';
 
 /** Avatars without a photo: the initial on a tone, cycling blue, magenta, teal, amber. */
-const tones = ['bg-primary-soft text-primary-ink', 'bg-accent-soft text-accent-ink', 'bg-teal-soft text-teal', 'bg-amber-soft text-amber-ink'];
+const tones = ['bg-primary-soft text-primary-ink', 'bg-accent-soft text-accent-ink', 'bg-secondary-soft text-secondary', 'bg-steel-soft text-steel'];
 
 /*
  * Client testimonials. The grid follows the count: one centred, 2 or 4 in two
@@ -43,7 +43,7 @@ export function Testimonials({ testimonials, locale, t, white }: { testimonials:
                                             strokeWidth={1.5}
                                             strokeLinejoin="round"
                                             aria-hidden="true"
-                                            className={cx('size-[18px] shrink-0', star <= testimonial.rating ? 'fill-star stroke-amber-ink' : 'fill-none stroke-line-input')}
+                                            className={cx('size-[18px] shrink-0', star <= testimonial.rating ? 'fill-star stroke-star-line' : 'fill-none stroke-line-input')}
                                         >
                                             <path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z" />
                                         </svg>

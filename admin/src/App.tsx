@@ -82,8 +82,13 @@ export default function App() {
                 direction="rtl"
                 locale={arEG}
                 theme={{
+                    // Palette 8a, as on the site.
                     token: {
                         colorPrimary: '#0B63CE',
+                        colorTextBase: '#0B1424',
+                        colorBgLayout: '#F5F7FA',
+                        colorBorder: '#C9D1DC',
+                        colorBorderSecondary: '#E2E7EE',
                         fontFamily: "'Cairo Variable', system-ui, sans-serif",
                         borderRadius: 10,
                     },

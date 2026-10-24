@@ -2,7 +2,7 @@ import { cx } from '@/lib/cx';
 import { Eyebrow } from './Eyebrow';
 
 /*
- * Section heading: pill, h2 (optional teal second line), lead. `actions` (e.g. a
+ * Section heading: pill, h2 (optional second line in the secondary blue), lead. `actions` (e.g. a
  * "view all" button) sit at the other side, bottom-aligned, and wrap under the
  * text on narrow screens. `tone="navy"` for a heading on a navy block.
  */
@@ -34,7 +34,7 @@ export function SectionHeader({
             {eyebrow && <Eyebrow tone={navy ? 'navy' : 'primary'}>{eyebrow}</Eyebrow>}
             <h2 className={cx('max-w-4xl text-[1.875rem] leading-[1.35] font-extrabold sm:text-4xl lg:text-[2.5rem]', navy && 'text-white')}>
                 {title}
-                {highlight && <span className={cx('block', navy ? 'text-navy-glow' : 'text-teal')}>{highlight}</span>}
+                {highlight && <span className={cx('block', navy ? 'text-navy-glow' : 'text-secondary')}>{highlight}</span>}
             </h2>
             {lead && <p className={cx('max-w-[640px] text-lg', navy ? 'text-navy-muted' : 'text-ink-muted')}>{lead}</p>}
         </>

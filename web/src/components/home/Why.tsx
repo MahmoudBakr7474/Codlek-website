@@ -19,7 +19,7 @@ export function Why({ why, years, locale, t, white }: { why: Schemas['Why']; yea
 
                     <h2 className="text-[1.875rem] leading-[1.35] font-extrabold sm:text-4xl lg:text-[2.5rem]">
                         {t('home.why.title_1')}
-                        <span className="block text-teal">{t('home.why.title_2')}</span>
+                        <span className="block text-secondary">{t('home.why.title_2')}</span>
                     </h2>
 
                     <p className="text-[17px] text-ink-muted sm:text-lg">{t('home.why.lead')}</p>

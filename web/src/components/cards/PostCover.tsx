@@ -20,7 +20,7 @@ export function PostCover({ coverUrl, seed, eager = false, size = 'md', classNam
         );
     }
 
-    const tones = ['bg-primary-soft', 'bg-teal-soft', 'bg-accent-soft', 'bg-amber-soft'];
+    const tones = ['bg-primary-soft', 'bg-secondary-soft', 'bg-accent-soft', 'bg-steel-soft'];
     const tone = tones[[...seed].reduce((sum, c) => sum + c.charCodeAt(0), 0) % tones.length];
     const [card, mark] =
         size === 'lg'

@@ -17,7 +17,7 @@ export function ErrorSummary({ message }: { message: string }) {
             ref={box}
             role="alert"
             tabIndex={-1}
-            className="mt-5 flex items-start gap-3 rounded-btn border border-accent-line bg-accent-soft px-4 py-3 text-sm text-accent-ink outline-none"
+            className="mt-5 flex items-start gap-3 rounded-btn border border-danger-line bg-danger-soft px-4 py-3 text-sm text-danger outline-none"
         >
             <CircleAlert className="mt-0.5 size-[18px] shrink-0" aria-hidden="true" />
             <p className="font-semibold">{message}</p>
@@ -46,7 +46,7 @@ export function Toast({ title, text, closeLabel, onClose }: { title: string; tex
             <div className="fixed inset-x-4 bottom-24 z-50 mx-auto max-w-md sm:bottom-8">
                 {/* Dark: a lighter panel with a stronger edge, so it stands off the page under it. */}
                 <div className="flex items-start gap-3 rounded-2xl border border-line bg-surface p-4 shadow-float dark:border-line-strong dark:bg-surface-muted">
-                    <span className="grid size-10 shrink-0 place-items-center rounded-btn bg-teal-soft text-teal">
+                    <span className="grid size-10 shrink-0 place-items-center rounded-btn bg-secondary-soft text-secondary">
                         <CircleCheck className="size-5" aria-hidden="true" />
                     </span>
                     <div className="min-w-0 flex-1 pt-0.5">

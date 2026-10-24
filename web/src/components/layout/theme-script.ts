@@ -1,7 +1,7 @@
 export const THEME_KEY = 'codlek-theme';
 
 /** Browser bar colour = the header's surface. */
-export const THEME_COLORS = { light: '#FFFFFF', dark: '#0F1F40' };
+export const THEME_COLORS = { light: '#FFFFFF', dark: '#101B2E' };
 
 /**
  * Runs in <head> before first paint (no light/dark flash): the visitor's own

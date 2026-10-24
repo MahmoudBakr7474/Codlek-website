@@ -93,9 +93,6 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
                     {t('skip')}
                 </a>
 
-                {/* The design's three-colour brand strip (blue / teal / magenta). */}
-                <div className="brand-strip w-full shrink-0" aria-hidden="true" />
-
                 <Header
                     locale={locale}
                     labels={{

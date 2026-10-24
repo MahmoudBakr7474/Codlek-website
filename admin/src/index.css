@@ -64,8 +64,8 @@ textarea[dir='ltr'],
 .rich-text blockquote {
     margin-inline: 0;
     padding-inline-start: 12px;
-    border-inline-start: 3px solid #0a7677;
-    color: #4a5878;
+    border-inline-start: 3px solid #0b63ce;
+    color: #5b6676;
 }
 
 .rich-text img {
@@ -80,7 +80,7 @@ textarea[dir='ltr'],
     border: 1px solid rgb(127 127 127 / 0.3);
     display: grid;
     place-items: center;
-    background: #f5f8fd;
-    color: #17181c;
+    background: #f5f7fa;
+    color: #0b1b3f;
     overflow: hidden;
 }

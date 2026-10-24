@@ -5,11 +5,14 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * Design tokens (site redesign, October 2026), ported from the Laravel site. The
- * site's own palette is a blue primary with teal and magenta (the three-colour
- * brand strip), plus a navy for emphasis blocks; the logo keeps its own orange
- * accent. Both themes use the same names, mapped to Tailwind below (`bg-surface`,
- * `text-ink-muted`, `border-line`…). Every text pair is checked for WCAG AA.
+ * Design tokens. Palette "Navy Depth" (8a) of the Codlek identity, October 2026:
+ * primary #0B63CE and navy #0B1B3F (the logo's colours), accent 1 #0A2A55,
+ * accent 2 #1E4E8C, text #0B1424, background #F5F7FA, surface #FFFFFF, border
+ * #E2E7EE, muted text #5B6676. No bright or red brand colours: red is kept for
+ * form errors only (danger), gold for rating stars and green for WhatsApp,
+ * because they mean something. Both themes use the same names, mapped to
+ * Tailwind below (`bg-surface`, `text-ink-muted`, `border-line`…). Every text
+ * pair is checked for WCAG AA.
  *
  * Keep these blocks unlayered: `@theme inline` re-declares the shadow names
  * inside a cascade layer, and unlayered declarations win.
@@ -17,61 +20,63 @@
 :root {
     color-scheme: light;
 
-    --bg: #F5F8FD;
+    --bg: #F5F7FA;
     --surface: #FFFFFF;
-    --surface-muted: #F8FAFE; /* hero stats strip, testimonial cards, tech chips */
-    --surface-sunken: #F3F7FD; /* image wells */
-    --surface-chip: #F1F5FB; /* category pills, neutral icon tiles */
-    --line: #E3EAF5;
-    --line-strong: #C9D4E5; /* outline buttons */
-    --line-input: #8592AB; /* form field borders: 3:1 against the field */
+    --surface-muted: #F8F9FB; /* hero stats strip, testimonial cards, tech chips */
+    --surface-sunken: #F2F4F7; /* image wells */
+    --surface-chip: #EEF1F5; /* category pills, neutral icon tiles */
+    --line: #E2E7EE;
+    --line-strong: #C9D1DC; /* outline buttons */
+    --line-input: #8A94A3; /* form field borders: 3:1 against the field */
 
-    --ink: #0B1B3F;
-    --ink-soft: #33415C; /* nav links, pill text */
-    --ink-muted: #4A5878; /* paragraphs, labels */
-    --ink-subtle: #66728C; /* placeholders and meta: 4.5:1 on white */
-    --ink-quote: #1E2B48; /* testimonial quotes, a shade softer than the headings */
+    --ink: #0B1424;
+    --ink-soft: #2B3544; /* nav links, pill text */
+    --ink-muted: #5B6676; /* paragraphs, labels */
+    --ink-subtle: #646E7E; /* placeholders and meta: 4.5:1 on the background */
+    --ink-quote: #1B2433; /* testimonial quotes, a shade softer than the headings */
 
     --primary: #0B63CE;
     --primary-hover: #084C9E;
     --primary-ink: #0B63CE; /* links and text on soft backgrounds */
-    --primary-soft: #EAF2FF;
-    --primary-line: #C7DCFA;
+    --primary-soft: #EAF1FB;
+    --primary-line: #C6D9F2;
     --on-primary: #FFFFFF;
     --on-primary-muted: #DCEBFF; /* paragraph on the blue band */
     --on-primary-line: #8DB9F2; /* outline button on the blue band */
 
-    /* The design's #0B7F80, a shade deeper: teal text on teal-soft reaches 4.6:1. */
-    --teal: #0A7677; /* heading highlight line, teal tiles */
-    --teal-soft: #D5F3F1;
-    --teal-bright: #0FA3A3; /* brand strip only */
-    --accent: #D6336C; /* brand strip */
-    --accent-ink: #B8215A; /* "popular" badge text, errors */
-    --accent-soft: #FDE2EC;
-    --accent-line: #F6C3D5;
-    --amber-ink: #9A5B00;
-    --amber-soft: #FFF1D6;
+    --secondary: #1E4E8C; /* accent 2: headings' second line, success, tiles */
+    --secondary-soft: #E7EDF6;
+    --accent: #0A2A55; /* accent 1: "popular" badge, tiles */
+    --accent-ink: #0A2A55;
+    --accent-soft: #E5EAF2;
+    --accent-line: #C3CEDF;
+    --steel: #4A5668; /* the fourth tile tone */
+    --steel-soft: #ECEFF3;
+
+    --danger: #B42318; /* form errors only */
+    --danger-soft: #FEF1F0;
+    --danger-line: #F6C9C5;
     --star: #C27F00; /* rating stars: 3:1 on the testimonial cards */
+    --star-line: #9A5B00;
 
     --navy: #0B1B3F; /* process section, emphasis blocks */
-    --navy-card: #132757;
-    --navy-line: #22386A;
-    --navy-chip: #1C3166;
+    --navy-card: #0A2A55;
+    --navy-line: #1E3A66;
+    --navy-chip: #12305E;
     --navy-chip-ink: #BFD8FF;
-    --navy-muted: #B9C6E0;
-    --navy-number: #3E5891; /* decorative step numbers */
-    --navy-glow: #5FE0D6;
+    --navy-muted: #B6C2D6;
+    --navy-number: #4A6A99; /* decorative step numbers */
+    --navy-glow: #7FB2F0;
 
-    /* The logo keeps its own colours (logo 2c): ink and the small square. */
-    --logo-ink: #17181C;
-    --logo-accent: #DB551D;
+    /* The logo: the C and the word in navy, the bar and squares in blue. */
+    --logo-ink: #0B1B3F;
+    --logo-accent: #0B63CE;
+    --progress: #0B1B3F; /* the reading progress line under the header */
 
     /* Fixed colours, the same in both themes. */
     --whatsapp: #15803D; /* white text 5:1 */
     --whatsapp-hover: #116632;
-    --dot-red: #FF6B6B; /* the three dots of the browser-window frames */
-    --dot-amber: #FFC14D;
-    --dot-green: #3DD68C;
+    --dot: #C9D1DC; /* the three dots of the browser-window frames */
 
     --shadow-xs: 0 1px 2px rgb(11 27 63 / 0.05);
     --shadow-card: 0 2px 6px rgb(11 27 63 / 0.04);
@@ -83,25 +88,26 @@
     --font-body: var(--font-cairo), 'Cairo', ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Dark: a deep blue night with the same roles. The navy blocks stay darker
-   than the page, and the primary keeps white text (above 4.5:1). */
+/* Dark: the palette's text colour #0B1424 as the night, with the same roles.
+   The navy blocks stay darker than the page, and the primary keeps white text
+   (above 4.5:1). */
 .dark {
     color-scheme: dark;
 
-    --bg: #0A1631;
-    --surface: #0F1F40;
-    --surface-muted: #132650;
-    --surface-sunken: #0C1A38;
-    --surface-chip: #172C57;
-    --line: #22386A;
-    --line-strong: #2F4B7E;
-    --line-input: #6A80A8;
+    --bg: #0B1424;
+    --surface: #101B2E;
+    --surface-muted: #14213A;
+    --surface-sunken: #0D1729;
+    --surface-chip: #182741;
+    --line: #233149;
+    --line-strong: #30415F;
+    --line-input: #6B7C96;
 
-    --ink: #EEF3FC;
-    --ink-soft: #C9D5EC;
-    --ink-muted: #A9B8D6;
-    --ink-subtle: #8394B5;
-    --ink-quote: #EEF3FC;
+    --ink: #F5F7FA;
+    --ink-soft: #D3DAE5;
+    --ink-muted: #A8B3C4;
+    --ink-subtle: #8591A5;
+    --ink-quote: #F5F7FA;
 
     --primary: #1F6AD3;
     --primary-hover: #185EC0;
@@ -112,29 +118,36 @@
     --on-primary-muted: #EEF5FF;
     --on-primary-line: #8DB9F2;
 
-    --teal: #4FD6CB;
-    --teal-soft: rgb(95 224 214 / 0.13);
-    --teal-bright: #0FA3A3;
-    --accent: #E0477F;
-    --accent-ink: #FF8DB3;
-    --accent-soft: rgb(214 51 108 / 0.18);
-    --accent-line: rgb(255 141 179 / 0.35);
-    --amber-ink: #FFC56B;
-    /* Opaque: any see-through amber over the navy comes out slate grey. */
-    --amber-soft: #3A2F1C;
+    --secondary: #8DB3E6;
+    --secondary-soft: rgb(30 78 140 / 0.3);
+    --accent: #B7C9E6;
+    --accent-ink: #B7C9E6;
+    /* Opaque tiles: see-through navy over the night barely shows. */
+    --accent-soft: #12243F;
+    --accent-line: #2E4466;
+    --steel: #B3BDCB;
+    --steel-soft: #1A2538;
+
+    --danger: #FF8A80;
+    --danger-soft: rgb(180 35 24 / 0.18);
+    --danger-line: rgb(255 138 128 / 0.35);
     --star: #F2B33D;
+    --star-line: #FFC56B;
 
-    --navy: #071027;
-    --navy-card: #0F2049;
-    --navy-line: #22386A;
-    --navy-chip: #1A3062;
+    --navy: #070D18;
+    --navy-card: #0F1D33;
+    --navy-line: #233149;
+    --navy-chip: #15253F;
     --navy-chip-ink: #BFD8FF;
-    --navy-muted: #B9C6E0;
-    --navy-number: #4A649C;
-    --navy-glow: #5FE0D6;
+    --navy-muted: #B6C2D6;
+    --navy-number: #44597A;
+    --navy-glow: #82B5FF;
 
-    --logo-ink: #F7F4F1;
-    --logo-accent: #EF764B;
+    /* The C turns light on the night; the bar and squares keep the logo blue (3:1). */
+    --logo-ink: #F5F7FA;
+    --logo-accent: #0B63CE;
+    --progress: #82B5FF;
+    --dot: #30415F;
 
     --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.25);
     --shadow-card: 0 2px 6px rgb(0 0 0 / 0.25);
@@ -192,16 +205,19 @@
     --color-on-primary: var(--on-primary);
     --color-on-primary-muted: var(--on-primary-muted);
     --color-on-primary-line: var(--on-primary-line);
-    --color-teal: var(--teal);
-    --color-teal-soft: var(--teal-soft);
-    --color-teal-bright: var(--teal-bright);
+    --color-secondary: var(--secondary);
+    --color-secondary-soft: var(--secondary-soft);
     --color-accent: var(--accent);
     --color-accent-ink: var(--accent-ink);
     --color-accent-soft: var(--accent-soft);
     --color-accent-line: var(--accent-line);
-    --color-amber-ink: var(--amber-ink);
-    --color-amber-soft: var(--amber-soft);
+    --color-steel: var(--steel);
+    --color-steel-soft: var(--steel-soft);
+    --color-danger: var(--danger);
+    --color-danger-soft: var(--danger-soft);
+    --color-danger-line: var(--danger-line);
     --color-star: var(--star);
+    --color-star-line: var(--star-line);
     --color-navy: var(--navy);
     --color-navy-card: var(--navy-card);
     --color-navy-line: var(--navy-line);
@@ -212,11 +228,10 @@
     --color-navy-glow: var(--navy-glow);
     --color-logo-ink: var(--logo-ink);
     --color-logo-accent: var(--logo-accent);
+    --color-progress: var(--progress);
     --color-whatsapp: var(--whatsapp);
     --color-whatsapp-hover: var(--whatsapp-hover);
-    --color-dot-red: var(--dot-red);
-    --color-dot-amber: var(--dot-amber);
-    --color-dot-green: var(--dot-green);
+    --color-dot: var(--dot);
 
     --shadow-xs: var(--shadow-xs);
     --shadow-card: var(--shadow-card);
@@ -354,17 +369,6 @@
 
     @media (width >= 40rem) {
         padding-inline: 24px;
-    }
-}
-
-/* The design's 4px brand strip: blue / teal / magenta in three equal parts,
-   blue on the reading start side in both directions. */
-@utility brand-strip {
-    height: 4px;
-    background-image: linear-gradient(to right, var(--primary) 0 33.34%, var(--teal-bright) 33.34% 66.67%, var(--accent) 66.67% 100%);
-
-    &:where([dir='rtl'], [dir='rtl'] *) {
-        background-image: linear-gradient(to left, var(--primary) 0 33.34%, var(--teal-bright) 33.34% 66.67%, var(--accent) 66.67% 100%);
     }
 }
 

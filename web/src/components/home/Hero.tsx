@@ -48,7 +48,7 @@ export function Hero({ home, locale, t }: { home: HomeData; locale: Locale; t: T
 
                     <h1 className="text-[2.25rem] leading-[1.3] font-extrabold sm:text-5xl lg:text-[3.5rem]">
                         {t('home.hero.title_1')}
-                        <span className="block text-teal">{t('home.hero.title_2')}</span>
+                        <span className="block text-secondary">{t('home.hero.title_2')}</span>
                     </h1>
 
                     <p className="max-w-[560px] text-[17px] text-ink-muted sm:text-[19px]">{t('home.hero.lead')}</p>
@@ -125,7 +125,7 @@ export function Hero({ home, locale, t }: { home: HomeData; locale: Locale; t: T
 
                     {home.heroTrust && (
                         <div className="absolute start-4 -bottom-[22px] flex max-w-[calc(100%-2rem)] items-center gap-3 rounded-2xl border border-line bg-surface px-[18px] py-3 shadow-float sm:start-6 sm:max-w-[calc(100%-3rem)]">
-                            <span className="grid size-10 shrink-0 place-items-center rounded-btn bg-teal-soft text-teal">
+                            <span className="grid size-10 shrink-0 place-items-center rounded-btn bg-secondary-soft text-secondary">
                                 <Check className="size-5" strokeWidth={2.4} aria-hidden="true" />
                             </span>
                             <div className="min-w-0">

@@ -6,6 +6,6 @@
         { "src": "/images/brand/codlek-mark-512.png", "sizes": "512x512", "type": "image/png" }
     ],
     "theme_color": "#FFFFFF",
-    "background_color": "#F5F8FD",
+    "background_color": "#F5F7FA",
     "display": "browser"
 }

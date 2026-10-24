@@ -1,9 +1,9 @@
 import { WORDMARK } from '../ui/Logo';
 
 /*
- * Brand loader: logo 2c assembles while the page loads. The three ink modules pop
- * in, the small accent square flies in and docks last, then the logo slides over
- * and the wordmark appears. Inline CSS and script, so the cover is right from the
+ * Brand loader: the logo assembles while the page loads. The two quarter circles of
+ * the C pop in, the blue bar slides in, the two squares fly in and dock last, then
+ * the logo slides over and the wordmark appears. Inline CSS and script, so the cover is right from the
  * first paint.
  *
  * Modes (admin, "المظهر وشاشة التحميل"):
@@ -17,7 +17,7 @@ import { WORDMARK } from '../ui/Logo';
  */
 
 const css = `
-.cl-loader { display: none; place-items: center; background: var(--bg, #F5F8FD); color: var(--logo-ink, #17181C); }
+.cl-loader { display: none; place-items: center; background: var(--bg, #F5F7FA); color: var(--logo-ink, #0B1B3F); }
 #page-loader { position: fixed; inset: 0; z-index: 200; }
 .is-loading #page-loader, .cl-loader--preview { display: grid; }
 .is-loaded #page-loader { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .45s ease, visibility 0s linear .45s; }
@@ -30,18 +30,21 @@ const css = `
 .cl-svg { display: block; height: 56px; width: auto; overflow: visible; animation: cl-center calc(.55s * var(--cl-t)) cubic-bezier(.2, .7, .2, 1) calc(.6s * var(--cl-t)) both; }
 .cl-piece { fill: currentColor; transform-box: fill-box; transform-origin: center; animation: cl-pop calc(.5s * var(--cl-t)) cubic-bezier(.34, 1.56, .64, 1) both; }
 .cl-piece:nth-child(2) { animation-delay: calc(.09s * var(--cl-t)); }
-.cl-piece:nth-child(3) { animation-delay: calc(.18s * var(--cl-t)); }
-.cl-accent { fill: var(--logo-accent, #DB551D); transform-box: fill-box; transform-origin: center;
-    animation: cl-dock calc(.55s * var(--cl-t)) cubic-bezier(.34, 1.4, .64, 1) calc(.38s * var(--cl-t)) both, cl-breathe 1.4s ease-in-out calc(1.3s * var(--cl-t)) infinite; }
+.cl-bar, .cl-accent { fill: var(--logo-accent, #0B63CE); transform-box: fill-box; }
+.cl-bar { transform-origin: left center; animation: cl-slide calc(.5s * var(--cl-t)) cubic-bezier(.2, .7, .2, 1) calc(.2s * var(--cl-t)) both; }
+.cl-accent { transform-origin: center;
+    animation: cl-dock calc(.55s * var(--cl-t)) cubic-bezier(.34, 1.4, .64, 1) calc(.36s * var(--cl-t)) both, cl-breathe 1.4s ease-in-out calc(1.3s * var(--cl-t)) infinite; }
+.cl-accent + .cl-accent { animation-delay: calc(.46s * var(--cl-t)), calc(1.5s * var(--cl-t)); }
 .cl-word { fill: currentColor; animation: cl-word calc(.5s * var(--cl-t)) cubic-bezier(.2, .7, .2, 1) calc(.62s * var(--cl-t)) both; }
 @keyframes cl-pop { from { opacity: 0; transform: scale(.3); } }
-@keyframes cl-dock { from { opacity: 0; transform: translate(18px, -24px) rotate(90deg) scale(.5); } }
+@keyframes cl-slide { from { opacity: 0; transform: translateX(14px) scaleX(.4); } }
+@keyframes cl-dock { from { opacity: 0; transform: translate(14px, -22px) rotate(90deg) scale(.5); } }
 @keyframes cl-breathe { 50% { transform: scale(.72); } }
 @keyframes cl-word { from { opacity: 0; transform: translateX(-10px); } }
-@keyframes cl-center { from { transform: translateX(37.6%); } }
+@keyframes cl-center { from { transform: translateX(37.99%); } }
 .cl-loader--preview { height: 220px; border-radius: 16px; border: 1px solid rgb(148 163 184 / .3); overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
-    .cl-piece, .cl-accent, .cl-word, .cl-svg { animation: none; }
+    .cl-piece, .cl-bar, .cl-accent, .cl-word, .cl-svg { animation: none; }
     .is-loaded #page-loader .cl-logo { transform: none; }
 }`;
 
@@ -84,15 +87,14 @@ export function LoaderLogo({ preview = false }: { preview?: boolean }) {
     return (
         <div {...(preview ? { className: 'cl-loader cl-loader--preview' } : { id: 'page-loader', className: 'cl-loader' })} aria-hidden="true">
             <div className="cl-logo">
-                {/* The logo's geometry on a 65-unit grid (the SVG file is drawn 20x larger), so CSS offsets read as pixels. */}
-                <svg className="cl-svg" viewBox="0 0 262.6 65" focusable="false">
-                    <path className="cl-piece" d="M30 30H0A30 30 0 0 1 30 0Z" />
-                    <path className="cl-piece" d="M35 0H65V30H35Z" />
-                    <path className="cl-piece" d="M0 35H30V65A30 30 0 0 1 0 35Z" />
-                    <rect className="cl-accent" x="50" y="50" width="15" height="15" rx="4" />
-                    <g className="cl-word">
-                        <path transform="scale(.05)" d={WORDMARK} />
-                    </g>
+                {/* The logo's own 61-unit grid (see ui/Logo), so CSS offsets read close to pixels. */}
+                <svg className="cl-svg" viewBox="0 0 254 61" focusable="false">
+                    <path className="cl-piece" d="M0 28A28 28 0 0 1 28 0V28Z" />
+                    <path className="cl-piece" d="M0 33H28V61A28 28 0 0 1 0 33Z" />
+                    <path className="cl-bar" d="M33 0H58A3 3 0 0 1 61 3V9A3 3 0 0 1 58 12H33Z" />
+                    <rect className="cl-accent" x="33" y="49" width="12" height="12" rx="3" />
+                    <rect className="cl-accent" x="49" y="49" width="12" height="12" rx="3" />
+                    <path className="cl-word" d={WORDMARK} />
                 </svg>
             </div>
         </div>

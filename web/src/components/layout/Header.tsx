@@ -63,7 +63,38 @@ export function Header({ locale, labels }: { locale: Locale; labels: HeaderLabel
     const scrolled = useSyncExternalStore(subscribeScroll, scrolledPast, () => false);
     const menuButton = useRef<HTMLButtonElement>(null);
     const root = useRef<HTMLElement>(null);
+    const progress = useRef<HTMLDivElement>(null);
     const { dark, toggle } = useThemeToggle();
+
+    // The reading progress line on the header's bottom edge: fills as the page
+    // scrolls and is full at the end (or at once on a page too short to scroll).
+    // Set straight on the element once per frame, without a React render.
+    useEffect(() => {
+        let frame = 0;
+        const update = () => {
+            frame = 0;
+            const room = document.documentElement.scrollHeight - window.innerHeight;
+            // Within a pixel of the end counts as the end: scroll positions can be fractional.
+            const value = room > 1 && window.scrollY < room - 1 ? Math.max(0, window.scrollY / room) : 1;
+            if (progress.current) progress.current.style.transform = `scaleX(${value})`;
+        };
+        const schedule = () => {
+            if (!frame) frame = requestAnimationFrame(update);
+        };
+
+        update();
+        window.addEventListener('scroll', schedule, { passive: true });
+        window.addEventListener('resize', schedule);
+        // Images and streamed sections change the page's height after load.
+        const resize = new ResizeObserver(schedule);
+        resize.observe(document.body);
+        return () => {
+            cancelAnimationFrame(frame);
+            window.removeEventListener('scroll', schedule);
+            window.removeEventListener('resize', schedule);
+            resize.disconnect();
+        };
+    }, [pathname]);
 
     const otherLocale: Locale = locale === 'ar' ? 'en' : 'ar';
     const switchHref = otherLocale === 'en' ? `/en${path === '/' ? '' : path}` : path;
@@ -110,6 +141,12 @@ export function Header({ locale, labels }: { locale: Locale; labels: HeaderLabel
             }}
             className={cx('sticky top-0 z-50 border-b border-line bg-surface transition-shadow duration-300', scrolled && !open ? 'shadow-xs' : 'shadow-none')}
         >
+            <div
+                ref={progress}
+                className="pointer-events-none absolute inset-x-0 -bottom-px h-[3px] origin-left bg-progress rtl:origin-right"
+                style={{ transform: 'scaleX(0)' }}
+                aria-hidden="true"
+            />
             <div className="shell flex h-16 items-center justify-between gap-2 sm:gap-3 lg:h-[72px] xl:gap-4">
                 <Link href={href(locale, 'home')} className="-my-1.5 shrink-0 rounded-btn py-1.5" aria-label={labels.home}>
                     <Logo size="none" className="h-8 sm:h-9" />

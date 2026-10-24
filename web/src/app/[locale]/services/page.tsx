@@ -21,9 +21,9 @@ export async function generateMetadata({ params }: PageProps<'/[locale]/services
 /** The small round icon in each jump link takes the service's tile colour. */
 const chipTones: Record<string, string> = {
     blue: 'bg-primary-soft text-primary-ink',
-    teal: 'bg-teal-soft text-teal',
+    teal: 'bg-secondary-soft text-secondary',
     magenta: 'bg-accent-soft text-accent-ink',
-    amber: 'bg-amber-soft text-amber-ink',
+    amber: 'bg-steel-soft text-steel',
 };
 
 /*
@@ -107,7 +107,7 @@ export default async function ServicesPage({ params }: PageProps<'/[locale]/serv
                                             <ul className="mt-6 grid gap-x-6 gap-y-3 border-t border-line pt-6 sm:grid-cols-2">
                                                 {service.features.map((feature, f) => (
                                                     <li key={f} className="flex items-start gap-2.5">
-                                                        <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-teal-soft text-teal">
+                                                        <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-secondary-soft text-secondary">
                                                             <Check className="size-3.5" strokeWidth={3} aria-hidden="true" />
                                                         </span>
                                                         <span className="text-[15px] font-semibold text-ink-soft sm:text-base">{feature}</span>

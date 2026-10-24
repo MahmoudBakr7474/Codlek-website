@@ -119,7 +119,7 @@ export function CareersForm({ locale, texts, jobs, selectedJob, privacyHref }: P
                     </span>
                     <label
                         data-invalid={cvError ? '' : undefined}
-                        className="group flex cursor-pointer items-center gap-4 rounded-box border-[1.5px] border-dashed border-line-input bg-surface-muted p-4 transition-[border-color,background-color,box-shadow] duration-150 hover:border-primary hover:bg-primary-soft has-[:focus-visible]:border-primary has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-primary/20 data-invalid:border-accent-ink data-invalid:has-[:focus-visible]:ring-accent/20"
+                        className="group flex cursor-pointer items-center gap-4 rounded-box border-[1.5px] border-dashed border-line-input bg-surface-muted p-4 transition-[border-color,background-color,box-shadow] duration-150 hover:border-primary hover:bg-primary-soft has-[:focus-visible]:border-primary has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-primary/20 data-invalid:border-danger data-invalid:has-[:focus-visible]:ring-danger/20"
                     >
                         <input
                             ref={fileInput}
@@ -134,7 +134,7 @@ export function CareersForm({ locale, texts, jobs, selectedJob, privacyHref }: P
                             aria-invalid={cvError ? true : undefined}
                         />
                         <span className="grid size-11 shrink-0 place-items-center rounded-btn bg-surface text-primary-ink shadow-xs ring-1 ring-line" aria-hidden="true">
-                            {fileName ? <FileCheck className="size-[22px] text-teal" /> : <FileUp className="size-[22px]" />}
+                            {fileName ? <FileCheck className="size-[22px] text-secondary" /> : <FileUp className="size-[22px]" />}
                         </span>
                         <span className="min-w-0">
                             {/* A long file name is cut with an ellipsis; the prompt wraps evenly. */}

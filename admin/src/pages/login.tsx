@@ -10,9 +10,9 @@ export function LoginPage() {
     const failed = data?.success === false ? data.error : null;
 
     return (
-        <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', padding: 16, background: '#F5F8FD' }}>
+        <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', padding: 16, background: '#F5F7FA' }}>
             <Card style={{ width: '100%', maxWidth: 400 }}>
-                <div style={{ display: 'flex', justifyContent: 'center', margin: '8px 0 20px', color: '#17181C' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', margin: '8px 0 20px', color: '#0B1B3F' }}>
                     <Logo height={34} />
                 </div>
                 <Typography.Title level={4} style={{ textAlign: 'center', marginTop: 0 }}>

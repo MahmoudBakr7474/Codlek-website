@@ -31,12 +31,12 @@ type ServiceRow = {
     sortOrder: number;
 };
 
-/** The icon tile colours of the site (soft background, ink), by tone. */
+/** The icon tile colours of the site (soft background, ink), by tone. The keys are the old tone names, which the data keeps. */
 const tones: Record<string, { label: string; bg: string; ink: string }> = {
-    blue: { label: 'أزرق', bg: '#EAF2FF', ink: '#0B63CE' },
-    teal: { label: 'تركواز', bg: '#D5F3F1', ink: '#0B7F80' },
-    magenta: { label: 'فوشيا', bg: '#FDE2EC', ink: '#B8215A' },
-    amber: { label: 'ذهبي', bg: '#FFF1D6', ink: '#9A5B00' },
+    blue: { label: 'أزرق', bg: '#EAF1FB', ink: '#0B63CE' },
+    teal: { label: 'أزرق غامق', bg: '#E7EDF6', ink: '#1E4E8C' },
+    magenta: { label: 'كحلي', bg: '#E5EAF2', ink: '#0A2A55' },
+    amber: { label: 'رمادي', bg: '#ECEFF3', ink: '#4A5668' },
 };
 
 function Tile({ icon, tone, size = 36 }: { icon: string; tone: string; size?: number }) {
