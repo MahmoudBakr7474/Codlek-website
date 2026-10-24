@@ -27,7 +27,14 @@
   - خانات الإنجليزي والروابط كانت بتتكتب من اليمين.
   - غلط الفورم في تاب مقفول مكانش باين.
   - غلط «CV أو رابط» كان بيفضل ظاهر بعد ما تختار ملف.
-- **الجاي:** الرفع حسب [DEPLOY.md](DEPLOY.md).
+- **الرفع (2026-10-24):**
+  - الـ API واللوحة على https://codlek.tryasp.net (MonsterASP، داتابيز db75515، HTTPS من Let's Encrypt).
+  - الموقع على https://codlekwebsite.vercel.app (مشروع Vercel `codlek_website`، متوصل بريبو `codlek_website`).
+  - الداتا اتنقلت بـ `deploy/export-data.ps1` + Adminer، ومطابقة للأصل (نفس الـ checksums).
+  - **فاضل على المالك:**
+    - `Codlek__RevalidateSecret` على MonsterASP و `REVALIDATE_SECRET` على Vercel، وبعدهم Redeploy.
+    - تغيير إيميل وكلمة سر الأدمن من «حسابي».
+    - تغيير كلمة سر الداتابيز، لأنها اتبعتت في الشات.
 
 ---
 

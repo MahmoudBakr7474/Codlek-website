@@ -51,8 +51,17 @@
    الأداة بتعمل الجداول (migrations) وبتنقل كل الداتا بنفس الـ IDs، وبتطبع عدد الصفوف في كل جدول.
 3. **اقفل الوصول من بره تاني** بعد ما تخلص (Disabled).
 
-**ب) من غير وصول من بره:** افتح LocalDB `(localdb)\MSSQLLocalDB` في SQL Server Management Studio، واعمل كليك يمين على داتابيز `Codlek` ← Tasks ← Generate Scripts ← Advanced ← *Types of data to script* = **Schema and data**. وبعدين شغّل السكريبت على داتابيز MonsterASP من أداة الداتابيز في لوحتهم.
-استخدم الطريقة دي كمان لو عدّلت محتوى من اللوحة المحلية وعايز تنقله زي ما هو.
+**ب) من غير وصول من بره ولا كلمة سر (اللي اتعمل في أول رفع):**
+1. ارفع الـ API الأول وشغّله مرة، و `Codlek__MigrateOnStartup=true`، فهو بيعمل الجداول فاضية.
+2. على جهازك، اطلّع الداتا من LocalDB لملف SQL:
+   ```bash
+   powershell -ExecutionPolicy Bypass -File deploy/export-data.ps1
+   ```
+   الناتج بيبقى `out/codlek-data.sql`، وفيه INSERTs بنفس الـ IDs.
+3. في MonsterASP: الداتابيز ← WebMSSQL ← **Open Adminer** (بيدخل لوحده) ← **Import** ← اختار الملف ← **Execute**.
+4. اعمل **Restart** للتطبيق، لأن الإعدادات بتتحفظ في الذاكرة من أول تشغيل، فلازم يقراها من جديد.
+
+ودي نفس الطريقة لو عدّلت محتوى من اللوحة المحلية وعايز تنقله زي ما هو، بشرط إن الجداول على السيرفر تكون فاضية.
 
 ### 2.3 الإعدادات (Environment variables)
 Control Panel ← Websites ← موقعك ← **Scripting** ← **Environment variables** ← اكتب الاسم والقيمة ← **Add**، وفي الآخر **Restart application**.
@@ -61,7 +70,7 @@ Control Panel ← Websites ← موقعك ← **Scripting** ← **Environment va
 | الاسم | القيمة | ملاحظات |
 |---|---|---|
 | `ASPNETCORE_ENVIRONMENT` | `Production` | متسيبهاش أبداً `Development` على السيرفر |
-| `ConnectionStrings__Default` | الـ connection string الداخلي بتاع الداتابيز | من صفحة الداتابيز (مش بتاع الـ remote) |
+| `ConnectionStrings__Default` | الـ connection string الداخلي بتاع الداتابيز | الاسم بالظبط كده. القيمة من صفحة الداتابيز ← Local access ← Show with password (مش بتاع الـ remote) |
 | `Codlek__PublicUrl` | `https://<api-host>` | من غير `/` في الآخر. روابط الصور بتتبني منه |
 | `Codlek__SiteUrl` | `https://<الدومين>` | الموقع على Vercel. بيُستخدم في الإيميلات وزرار «عرض الموقع» |
 | `Codlek__CorsOrigins` | `https://<الدومين>,https://www.<الدومين>` | العناوين اللي الفورمين بيبعتوا منها. ضيف `https://<project>.vercel.app` لو هتجرب عليه |
@@ -92,7 +101,9 @@ $b = New-Object byte[] 32; [Security.Cryptography.RandomNumberGenerator]::Create
 - الـ `web.config` بيطلع لوحده من الـ publish. متعدلش فيه.
 
 ### 2.5 HTTPS (قبل أي دخول للوحة)
-الخطة المجانية بتفعّل HTTPS بتذكرة للدعم. **لازم يتفعّل قبل أول دخول للوحة** عشان كلمة السر متتبعتش على HTTP. وكمان الموقع على Vercel شغال HTTPS، فالمتصفح هيرفض يبعت الفورم أو يعرض الصور من API شغال HTTP.
+موقعك ← **HTTPS** ← **Enable HTTPS** (شهادة Let's Encrypt مجانية بتتجدد لوحدها)، وبعدين فعّل **HTTPS Redirect**. **لازم يتفعّل قبل أول دخول للوحة** عشان كلمة السر متتبعتش على HTTP. وكمان الموقع على Vercel شغال HTTPS، فالمتصفح هيرفض يبعت الفورم أو يعرض الصور من API شغال HTTP.
+
+> التطبيق على MonsterASP شغال 32-bit (x86) افتراضياً، والـ publish فيه المكتبات اللي محتاجها (`runtimes/win-x86`).
 
 ### 2.6 اتأكد إن الـ API شغال
 - `https://<api-host>/api/health` ← `{"status":"ok"}`
@@ -104,7 +115,9 @@ $b = New-Object byte[] 32; [Security.Cryptography.RandomNumberGenerator]::Create
 ## 3. Vercel
 
 1. ارفع الكود على GitHub، وبعدين في Vercel: **Add New ← Project** ← اختار الريبو.
-2. **Root Directory:** `web`. الـ Framework هيتعرف لوحده (Next.js).
+2. Settings ← Build and Deployment:
+   - **Root Directory:** `web`.
+   - **Framework Preset:** **Next.js**. لو فاضل **Other**، الـ build بيخلص في ثانيتين والموقع كله بيطلع «This page doesn't exist».
 3. Settings ← General ← **Node.js Version:** `22.x` (Next 16 محتاج 20.9 أو أحدث).
 4. **Environment Variables** (Production):
 
